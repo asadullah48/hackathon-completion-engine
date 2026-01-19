@@ -1,48 +1,90 @@
+# Hackathon Completion Engine - Git Ignore
+
 # Python
-.venv/
-venv/
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
+*.py[cod]
+*$py.class
 *.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
 .eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
 *.egg-info/
+.installed.cfg
 *.egg
 
-# Environment
+# Virtual Environment
+venv/
+.venv/
+ENV/
+env/
 .env
-.env.local
-*.local
 
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
+*~
+
+# Testing
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+# Distribution
+*.manifest
+*.spec
+
+# Logs
+*.log
+logs/
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Node
-node_modules/
-.next/
-out/
-build/
-dist/
-.turbo/
+# Secrets - NEVER COMMIT
+.env
+*.pem
+*.key
+secrets/
+credentials.json
 
-# Logs
-*.log
-npm-debug.log*
+# Deployment tokens
+.railway/
+.vercel/
+.render/
 
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-
-# Misc
-*.bak
+# Temporary files
 *.tmp
+*.temp
+tmp/
+temp/
+
+# Build artifacts
+*.pyc
+*.pyo
+.cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Documentation builds
+docs/_build/
+
+# Local development
+local/
+.local/

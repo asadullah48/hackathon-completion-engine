@@ -1,4 +1,4 @@
-# H0 Personal AI CTO - Dependencies
+# Hackathon Completion Engine - Dependencies
 # Python 3.11+ required
 
 # Core Dependencies
@@ -9,9 +9,6 @@ requests==2.31.0         # HTTP requests
 pyyaml==6.0.1            # YAML parsing
 click==8.1.7             # CLI framework
 rich==13.7.0             # Terminal formatting
-
-# File system monitoring
-watchdog==4.0.0          # File system events monitoring
 
 # Development Dependencies
 pytest==7.4.3            # Testing
