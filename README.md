@@ -51,15 +51,17 @@ Specific Implementations (Instances)
 
 ## 📋 Roadmap
 
-| Hackathon | Project | Status | Target Date | Tier |
-|-----------|---------|--------|-------------|------|
-| H0 | Personal AI CTO | ✅ Complete | Jan 23 | Silver |
-| H1 | Course Companion FTE | 🔄 Planned | Jan 28 | Gold |
-| H2 | Todo Spec-Driven | ⏳ Planned | Jan 31 | Gold |
-| H3 | Advanced Todo | ⏳ Planned | Feb 4 | Gold |
-| H4 | Cloud Deployment | ⏳ Planned | Feb 8 | Gold |
+| Hackathon | Project | Status | Target Date | Tier | Spec |
+|-----------|---------|--------|-------------|------|------|
+| H0 | Personal AI CTO | ✅ Complete | Jan 23 | Silver | ✅ [SPEC-H0-CORE.md](specs/SPEC-H0-CORE.md) |
+| H1 | Course Companion FTE | 🔄 In Progress | Jan 28 | Gold | ✅ [SPEC-H1-COURSE-COMPANION.md](specs/SPEC-H1-COURSE-COMPANION.md) |
+| H2 | Todo Spec-Driven | ⏳ Planned | Jan 31 | Gold | ✅ [SPEC-H2-TODO-SPEC-DRIVEN.md](specs/SPEC-H2-TODO-SPEC-DRIVEN.md) |
+| H3 | Advanced Todo | ⏳ Planned | Feb 4 | Gold | ✅ [SPEC-H3-ADVANCED-TODO.md](specs/SPEC-H3-ADVANCED-TODO.md) |
+| H4 | Cloud Deployment | ⏳ Planned | Feb 8 | Gold | ✅ [SPEC-H4-CLOUD-DEPLOYMENT.md](specs/SPEC-H4-CLOUD-DEPLOYMENT.md) |
 
 **Overall Target:** All 5 hackathons complete by Feb 8, 2026
+
+For detailed roadmap and status tracking, see [ROADMAP.md](ROADMAP.md).
 
 ---
 
