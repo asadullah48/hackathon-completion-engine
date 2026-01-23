@@ -1,55 +1,101 @@
-# H0: Personal AI CTO - Autonomous Business Assistant
+# Hackathon Completion Engine
 
-**Hackathon 0 - Panaversity AI Employee Project**
+**A universal framework for systematically completing Panaversity hackathons using spec-driven development**
 
-[![Status](https://img.shields.io/badge/status-bronze%20tier-cd7f32)]()
-[![Python](https://img.shields.io/badge/python-3.11%2B-blue)]()
-[![License](https://img.shields.io/badge/license-MIT-green)]()
+[![Status](https://img.shields.io/badge/status-active-success)]()
+[![Hackathons](https://img.shields.io/badge/hackathons-5-target)]()
+[![Tier](https://img.shields.io/badge/tier-silver-c0c0c0)]()
+[![Python](https://img.shields.io/badge/python-3.11+-blue)]()
 
-> An autonomous AI assistant that monitors files, creates action items, and manages workflows with human-in-the-loop approval for sensitive actions.
-
----
-
-## 🎯 Overview
-
-H0 (Personal AI CTO) is a local-first AI employee that:
-- **Monitors** a drop folder for incoming files
-- **Categorizes** files automatically (documents, code, data, images, videos, archives)
-- **Creates** action items in Obsidian vault
-- **Logs** all activities with timestamps
-- **Implements** Human-In-The-Loop (HITL) approval for sensitive actions
-- **Organizes** work using a structured vault system
-
-**Bronze Tier Achieved:** ✅ All core features operational
+> An autonomous system that transforms undefined hackathon problems into defined, spec-driven solutions with business-grade quality.
 
 ---
 
-## 📁 Project Structure
+## 🎯 Mission
+
+Complete all 5 Panaversity hackathons in 3 weeks using systematic, reusable architecture that demonstrates business project readiness. The framework follows constitutional principles around reusability, token optimization, and validation-first development.
+
+---
+
+## 🏗️ Architecture Pattern
+
 ```
-h0-personal-ai-cto/
-├── watchers/              # File monitoring scripts
-│   ├── base_watcher.py    # Base watcher class
-│   ├── file_watcher.py    # Main file watcher
-│   └── gmail_watcher.py   # Email watcher (future)
-├── skills/                # AI agent skills
-│   ├── hitl-approval-manager.md
-│   ├── dashboard-updater.md
-│   └── ceo-briefing-generator.md
-├── vault/                 # Obsidian knowledge base
-│   ├── Dashboard.md       # Status dashboard
-│   ├── Handbook.md        # Operations manual
-│   ├── Business_Goals.md  # Objectives & KPIs
-│   ├── Needs_Action/      # Items requiring attention
-│   ├── Pending_Approval/  # Awaiting human decision
-│   ├── Approved/          # Human-approved actions
-│   ├── Rejected/          # Declined actions
-│   ├── Done/              # Completed items
-│   ├── Logs/              # Activity logs (JSON)
-│   └── Briefings/         # CEO summaries
-├── tests/                 # Unit tests
-├── config/                # Configuration files
-└── requirements.txt       # Python dependencies
+Universal Engine (Core)
+    ↓
+Hackathon Templates (Adapters)
+    ↓
+Specific Implementations (Instances)
 ```
+
+---
+
+## 🚀 Current Status
+
+### Completed: H0 - Personal AI CTO (Silver Tier) ✅
+- **Status:** Production Ready
+- **Features:**
+  - File monitoring system with automatic categorization
+  - Obsidian vault integration for knowledge management
+  - Human-in-the-Loop (HITL) approval workflow
+  - Activity logging with JSON format
+  - CEO briefing generator
+  - Real-time dashboard
+  - Configuration management
+  - Comprehensive testing suite
+
+### Next: H1 - Course Companion FTE
+- **Specification:** Complete (see `specs/SPEC-H1-COURSE-COMPANION.md`)
+- **Target:** Begin implementation immediately after repository setup
+
+---
+
+## 📋 Roadmap
+
+| Hackathon | Project | Status | Target Date | Tier |
+|-----------|---------|--------|-------------|------|
+| H0 | Personal AI CTO | ✅ Complete | Jan 23 | Silver |
+| H1 | Course Companion FTE | 🔄 Planned | Jan 28 | Gold |
+| H2 | Todo Spec-Driven | ⏳ Planned | Jan 31 | Gold |
+| H3 | Advanced Todo | ⏳ Planned | Feb 4 | Gold |
+| H4 | Cloud Deployment | ⏳ Planned | Feb 8 | Gold |
+
+**Overall Target:** All 5 hackathons complete by Feb 8, 2026
+
+---
+
+## 🏗️ Core Components
+
+### Engine Components
+- **Spec Generator**: Auto-generates specifications from hackathon descriptions
+- **Skill Mapper**: Maps requirements to existing agent skills
+- **Template System**: Provides project templates
+- **Deployment Automator**: Handles one-click deployments
+
+### Skills Library
+39+ agent skills organized across 5 categories:
+- Core: watcher-orchestrator, systematic-debugging, verification-before-completion
+- Development: test-driven-development, using-git-worktrees, executing-plans
+- Business: ceo-briefing, business-audit-engine
+- Communication: discovering-intent, doc-coauthoring, brainstorming
+- Integration: fetch-library-docs, context7, postman-mcp
+
+---
+
+## 📋 Methodology
+
+### Spec-Driven Development
+1. Write constitutional document (rules/guidelines)
+2. Write specification document (requirements + design in EARS format)
+3. Claude Code generates implementation from spec
+4. Validate → Refine spec → Regenerate if needed
+5. Never manually write code without a spec
+
+### Core Principles
+1. **Spec-Driven Development**: No code exists without a spec first
+2. **Token Optimization**: Minimize API costs ruthlessly
+3. **Reusability First**: Build once, adapt many times
+4. **39+ Agent Skills Leverage**: Use existing skills before creating new ones
+5. **Validation-First Development**: Every component must have clear validation criteria
 
 ---
 
@@ -57,278 +103,75 @@ h0-personal-ai-cto/
 
 ### Prerequisites
 - Python 3.11+
-- Obsidian (optional, for viewing vault)
-- WSL/Linux or Windows with Python
+- Git
 
-### Installation
-
-1. **Navigate to project**
+### Setup
 ```bash
-cd /mnt/d/Personal-AI-Employee/hackathons/h0-personal-ai-cto
+# Clone the repository
+git clone <repository-url>
+cd hackathon-completion-engine
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
 ```
 
-2. **Install dependencies**
+### Running H0 (Personal AI CTO)
 ```bash
-pip3 install -r requirements.txt
-```
+# Navigate to H0 project
+cd hackathons/h0-personal-ai-cto
 
-3. **Set up drop folder**
-```bash
+# Install H0-specific dependencies
+pip install -r requirements.txt
+
+# Create inbox folder
 mkdir -p /mnt/d/AI-Employee-Inbox
-```
 
-4. **Configure environment (optional)**
-```bash
-cp .env.example .env
-# Edit .env with your settings
-```
-
-### Running the File Watcher
-
-**Dry-run mode (safe testing):**
-```bash
-python3 watchers/file_watcher.py --dry-run --interval 5
-```
-
-**Production mode:**
-```bash
+# Run the file watcher
 python3 watchers/file_watcher.py \
     --drop-folder /mnt/d/AI-Employee-Inbox \
     --vault vault \
     --interval 10
 ```
 
-**With custom settings:**
-```bash
-python3 watchers/file_watcher.py \
-    --drop-folder /path/to/inbox \
-    --vault /path/to/vault \
-    --interval 30
-```
+---
+
+## 📊 Token Usage
+
+**Current Usage:** ~45K tokens  
+**Budget:** 250K tokens (all 5 hackathons)  
+**Remaining:** ~205K tokens  
 
 ---
 
-## 📋 How It Works
+## 🤝 Contributing
 
-### 1. File Detection
-Drop any file into `/mnt/d/AI-Employee-Inbox`
+This project follows a constitutional approach with strict principles. All contributions must align with the project constitution found in `CONSTITUTION.md`.
 
-### 2. Automatic Categorization
-Files are categorized by extension:
-
-| Category | Extensions |
-|----------|------------|
-| **Documents** | .pdf, .docx, .txt, .md, .rtf |
-| **Code** | .py, .js, .ts, .java, .cpp, .h |
-| **Data** | .csv, .json, .xlsx, .xml, .sql, .db |
-| **Images** | .png, .jpg, .gif, .svg, .webp, .bmp |
-| **Videos** | .mp4, .mov, .avi, .mkv, .wmv, .flv |
-| **Archives** | .zip, .rar, .7z, .tar, .gz |
-| **Other** | everything else |
-
-### 3. Action Item Creation
-FileWatcher creates a markdown file in `vault/Needs_Action/`:
-```markdown
-# FILE DETECTED: document.pdf
-
-**Detected:** 2026-01-23 10:30:00
-**Category:** document
-**Priority:** Medium
-
-## File Information
-- **Name:** document.pdf
-- **Size:** 1.2 MB
-- **Location:** /mnt/d/AI-Employee-Inbox/document.pdf
-
-## Suggested Actions
-- [ ] Review document content
-- [ ] Extract key information
-- [ ] File in appropriate project folder
-- [ ] Update related documentation
-
-## Status
-- [x] File detected
-- [ ] Action reviewed by human
-- [ ] Action completed
-```
-
-### 4. Activity Logging
-All activities logged to `vault/Logs/YYYY-MM-DD.json`:
-```json
-{
-  "date": "2026-01-23",
-  "activities": [
-    {
-      "timestamp": "2026-01-23T10:30:00",
-      "type": "file_detected",
-      "details": {
-        "filename": "document.pdf",
-        "category": "document",
-        "action_item": "vault/Needs_Action/FILE_20260123_103000_document.md"
-      }
-    }
-  ]
-}
-```
-
-### 5. Human-In-The-Loop Workflow
-For sensitive actions:
-1. AI creates approval request in `vault/Pending_Approval/`
-2. Human reviews and moves to `vault/Approved/` or `vault/Rejected/`
-3. System executes approved actions
-4. Completed items move to `vault/Done/`
+### Development Guidelines
+1. Follow spec-driven development methodology
+2. Write comprehensive specifications before implementation
+3. Maintain token usage efficiency
+4. Ensure all components are reusable across hackathons
+5. Write comprehensive tests for all functionality
 
 ---
 
-## 🧪 Running Tests
+## 📄 License
 
-**Run all tests:**
-```bash
-python3 -m unittest discover tests/ -v
-```
-
-**Run specific test:**
-```bash
-python3 -m unittest tests.test_file_watcher -v
-```
-
-**Expected output:**
-```
-test_categorize_file_code ... ok
-test_categorize_file_data ... ok
-test_categorize_file_document ... ok
-test_categorize_file_other ... ok
-test_initialization ... ok
-
-Ran 5 tests in 0.015s
-
-OK
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🛠️ Configuration
+## 👥 Credits
 
-### Command-Line Arguments
-
-| Argument | Default | Description |
-|----------|---------|-------------|
-| `--drop-folder` | `/mnt/d/AI-Employee-Inbox` | Folder to monitor |
-| `--vault` | `vault` | Vault directory path |
-| `--interval` | `10` | Check interval (seconds) |
-| `--dry-run` | `False` | Test mode (no changes) |
-
-### Environment Variables
-Create `.env` file (see `.env.example`):
-```bash
-DROP_FOLDER=/mnt/d/AI-Employee-Inbox
-VAULT_PATH=vault
-CHECK_INTERVAL=10
-DRY_RUN=False
-```
+- **Developer:** Asadullah Shafique
+- **Role:** Elite Hackathon Technical Lead
+- **Mission:** Complete all 5 Panaversity hackathons systematically
 
 ---
 
-## 📊 Bronze Tier Features (Complete)
-
-✅ **Core Functionality**
-- [x] File monitoring system
-- [x] Automatic categorization (7 categories)
-- [x] Action item generation
-- [x] Activity logging
-- [x] State persistence
-
-✅ **HITL Workflow**
-- [x] Approval request system
-- [x] Human decision framework
-- [x] Action execution tracking
-
-✅ **Documentation**
-- [x] Complete README
-- [x] Usage examples
-- [x] Troubleshooting guide
-
-✅ **Testing**
-- [x] Unit tests passing (5/5)
-- [x] Integration tests passing
-- [x] E2E workflow validated
-
----
-
-## 🔮 Future Enhancements (Silver/Gold Tier)
-
-### Silver Tier Roadmap
-- [ ] Email integration (Gmail watcher)
-- [ ] CEO briefing generator
-- [ ] Advanced dashboard with auto-refresh
-- [ ] Multiple watcher types
-
-### Gold Tier Roadmap
-- [ ] Cross-domain integration (Personal + Business)
-- [ ] MCP server for external actions
-- [ ] Weekly business audit
-- [ ] Error recovery system
-- [ ] Comprehensive audit logging
-
----
-
-## 🐛 Troubleshooting
-
-### FileWatcher not detecting files
-**Issue:** Files dropped but no action items created
-
-**Solutions:**
-1. Check drop folder exists: `ls -la /mnt/d/AI-Employee-Inbox`
-2. Verify watcher is running: `ps aux | grep file_watcher`
-3. Check file permissions: Files must be readable
-4. Increase interval: Try `--interval 30`
-
-### Action items not created
-**Issue:** Watcher running but no files in `vault/Needs_Action/`
-
-**Solutions:**
-1. Verify vault directory: `ls -la vault/Needs_Action`
-2. Check dry-run mode: Remove `--dry-run` flag
-3. Review logs: `cat vault/Logs/*.json`
-4. Test manually with Python import
-
-### Import errors
-**Issue:** `ModuleNotFoundError` when running watcher
-
-**Solutions:**
-1. Install dependencies: `pip3 install -r requirements.txt`
-2. Check Python version: `python3 --version` (need 3.11+)
-3. Verify PYTHONPATH: Run from project root
-
----
-
-## 📝 License
-
-MIT License - See LICENSE file for details
-
----
-
-## 👥 Contributors
-
-- **Asadullah Shafique** - Lead Developer
-- **Panaversity** - Hackathon Organizers
-
----
-
-## 🙏 Acknowledgments
-
-- Panaversity Hackathon 0 organizers
-- Claude Code for development assistance
-- Obsidian community for vault inspiration
-
----
-
-## 📞 Support
-
-- **Issues:** Create issue in repository
-- **Questions:** Join Wednesday Research Meeting
-- **Feedback:** Submit via hackathon form
-
----
-
-**Built with ❤️ for Panaversity Hackathon 0 - January 2026**
+**Built with ❤️ for Panaversity Hackathon Series**
