@@ -1,0 +1,43 @@
+{
+  "version": "1.0.0",
+  "taxonomy": {
+    "process_management": {
+      "keywords": ["process", "orchestration", "coordination", "management", "lifecycle"],
+      "related_skills": ["watcher-orchestrator", "executing-plans"]
+    },
+    "quality_assurance": {
+      "keywords": ["testing", "validation", "verification", "quality", "check"],
+      "related_skills": ["test-driven-development", "verification-before-completion", "systematic-debugging"]
+    },
+    "documentation": {
+      "keywords": ["docs", "documentation", "readme", "specification", "spec"],
+      "related_skills": ["doc-coauthoring", "fetch-library-docs"]
+    },
+    "deployment": {
+      "keywords": ["deploy", "deployment", "release", "publish", "cloud"],
+      "related_skills": ["verification-before-completion"]
+    },
+    "api_integration": {
+      "keywords": ["api", "integration", "rest", "graphql", "endpoint"],
+      "related_skills": ["postman-mcp", "fetch-library-docs"]
+    },
+    "debugging": {
+      "keywords": ["debug", "error", "fix", "bug", "issue", "problem"],
+      "related_skills": ["systematic-debugging"]
+    },
+    "planning": {
+      "keywords": ["plan", "strategy", "roadmap", "architecture", "design"],
+      "related_skills": ["brainstorming", "discovering-intent", "executing-plans"]
+    },
+    "reporting": {
+      "keywords": ["report", "summary", "briefing", "status", "audit"],
+      "related_skills": ["ceo-briefing", "business-audit-engine"]
+    }
+  },
+  "matching_rules": {
+    "exact_match_weight": 1.0,
+    "partial_match_weight": 0.5,
+    "category_bonus": 0.2,
+    "minimum_confidence": 0.3
+  }
+}
