@@ -27,6 +27,8 @@ from routers import (
     users_router,
     teams_router,
     assignments_router,
+    suggestions_router,
+    calendar_router,
 )
 from seeds import seed_templates
 
@@ -73,6 +75,8 @@ app.include_router(templates_router)
 app.include_router(users_router)
 app.include_router(teams_router)
 app.include_router(assignments_router)
+app.include_router(suggestions_router)
+app.include_router(calendar_router)
 
 
 @app.get("/")
@@ -90,6 +94,8 @@ async def root():
             "users": "/api/users",
             "teams": "/api/teams",
             "assignments": "/api/assignments",
+            "suggestions": "/api/suggestions",
+            "calendar": "/api/calendar",
             "health": "/health",
             "docs": "/docs",
         },
@@ -106,6 +112,10 @@ async def root():
             "User management",
             "Todo assignments with status tracking",
             "Role-based permissions (owner, admin, editor, viewer)",
+            "AI-powered task suggestions",
+            "Productivity insights",
+            "Calendar integration (Google, Outlook, Apple)",
+            "Todo-to-calendar sync",
         ],
     }
 

@@ -22,9 +22,11 @@ import TeamDetail from '@/components/TeamDetail';
 import AnalyticsDashboard from '@/components/AnalyticsDashboard';
 import ExportImportPanel from '@/components/ExportImportPanel';
 import NotificationBadge from '@/components/NotificationBadge';
-import { AlertCircle, RefreshCw, ListTodo, Repeat, Layout, Users, BarChart3, Search, Settings } from 'lucide-react';
+import AISuggestions from '@/components/AISuggestions';
+import CalendarIntegration from '@/components/CalendarIntegration';
+import { AlertCircle, RefreshCw, ListTodo, Repeat, Layout, Users, BarChart3, Search, Settings, Sparkles } from 'lucide-react';
 
-type TabType = 'todos' | 'recurring' | 'templates' | 'teams' | 'analytics';
+type TabType = 'todos' | 'recurring' | 'templates' | 'teams' | 'analytics' | 'ai';
 
 export default function Home() {
   const {
@@ -131,12 +133,16 @@ export default function Home() {
     fetchTemplates();
   }, [fetchTodos, fetchStats, fetchTemplates]);
 
+  // Demo user ID for AI features
+  const demoUserId = 'demo-user-001';
+
   const tabs = [
     { id: 'todos' as TabType, label: 'My Todos', icon: ListTodo },
     { id: 'recurring' as TabType, label: 'Recurring', icon: Repeat },
     { id: 'templates' as TabType, label: 'Templates', icon: Layout },
     { id: 'teams' as TabType, label: 'Teams', icon: Users },
     { id: 'analytics' as TabType, label: 'Analytics', icon: BarChart3 },
+    { id: 'ai' as TabType, label: 'AI & Calendar', icon: Sparkles },
   ];
 
   return (
@@ -294,6 +300,16 @@ export default function Home() {
 
           {activeTab === 'analytics' && (
             <AnalyticsDashboard />
+          )}
+
+          {activeTab === 'ai' && (
+            <div className="grid lg:grid-cols-2 gap-6">
+              <AISuggestions
+                userId={demoUserId}
+                onRefreshTodos={handleRefresh}
+              />
+              <CalendarIntegration userId={demoUserId} />
+            </div>
           )}
         </div>
 

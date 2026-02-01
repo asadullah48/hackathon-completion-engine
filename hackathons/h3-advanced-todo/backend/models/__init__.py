@@ -12,6 +12,8 @@ from .template import Template
 from .user import User
 from .team import Team, TeamMember, MemberRole, TeamTodo, TodoComment, TeamRole
 from .assignment import TodoAssignment, AssignmentStatus
+from .suggestion import Suggestion, SuggestionType, SuggestionStatus
+from .calendar import CalendarConnection, CalendarEvent, CalendarProvider, ConnectionStatus, SyncDirection
 
 __all__ = [
     "Base",
@@ -32,4 +34,12 @@ __all__ = [
     "TeamRole",
     "TodoAssignment",
     "AssignmentStatus",
+    "Suggestion",
+    "SuggestionType",
+    "SuggestionStatus",
+    "CalendarConnection",
+    "CalendarEvent",
+    "CalendarProvider",
+    "ConnectionStatus",
+    "SyncDirection",
 ]
