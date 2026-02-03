@@ -1,3 +1,4 @@
+
 """
 H1 Course Companion FTE - Main FastAPI Application
 Enforces constitutional rules for academic integrity
