@@ -1,0 +1,102 @@
+# Default values for todo-app
+
+global:
+  environment: development
+
+# Frontend configuration
+frontend:
+  replicaCount: 2
+  image:
+    repository: todo-frontend
+    tag: v1.0.0
+    pullPolicy: Never
+  service:
+    type: ClusterIP
+    port: 3000
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 300m
+      memory: 512Mi
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 70
+
+# Backend configuration
+backend:
+  replicaCount: 2
+  image:
+    repository: todo-backend
+    tag: v1.0.0
+    pullPolicy: Never
+  service:
+    type: ClusterIP
+    port: 8000
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 70
+
+# PostgreSQL configuration
+postgresql:
+  enabled: true
+  image:
+    repository: postgres
+    tag: 15-alpine
+  auth:
+    username: todouser
+    password: todopass
+    database: tododb
+  persistence:
+    enabled: true
+    size: 5Gi
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+
+# Ingress configuration
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+  hosts:
+    - host: todo.local
+      paths:
+        - path: /
+          pathType: Prefix
+          service: frontend
+        - path: /api
+          pathType: Prefix
+          service: backend
+        - path: /health
+          pathType: Prefix
+          service: backend
+        - path: /docs
+          pathType: Prefix
+          service: backend
+
+# Application configuration
+config:
+  logLevel: INFO
+  corsOrigins: "*"
+
+# Monitoring configuration
+monitoring:
+  enabled: true
