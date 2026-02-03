@@ -9,6 +9,8 @@ requests==2.31.0         # HTTP requests
 pyyaml==6.0.1            # YAML parsing
 click==8.1.7             # CLI framework
 rich==13.7.0             # Terminal formatting
+flask==2.3.3             # Web framework for webhook server
+discord.py==2.3.2        # Discord API wrapper
 
 # Development Dependencies
 pytest==7.4.3            # Testing
