@@ -11,6 +11,7 @@ from .recurring_service import RecurringService, get_recurring_service
 from .team_service import TeamService
 from .suggestion_service import SuggestionService, get_suggestion_service
 from .calendar_service import CalendarService, get_calendar_service
+from .dapr_service import DaprService, get_dapr_service, publish_todo_event
 
 __all__ = [
     "check_content",
@@ -26,4 +27,7 @@ __all__ = [
     "get_suggestion_service",
     "CalendarService",
     "get_calendar_service",
+    "DaprService",
+    "get_dapr_service",
+    "publish_todo_event",
 ]

@@ -15,6 +15,13 @@ spec:
       labels:
         app: backend
         version: v1.0.0
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "backend"
+        dapr.io/app-port: "8000"
+        dapr.io/log-level: "info"
+        dapr.io/enable-metrics: "true"
+        dapr.io/metrics-port: "9090"
     spec:
       initContainers:
       - name: wait-for-db
@@ -31,7 +38,7 @@ spec:
           echo "PostgreSQL is ready!"
       containers:
       - name: backend
-        image: todo-backend:v1.0.0
+        image: todo-backend:v1.1.0
         imagePullPolicy: Never
         ports:
         - containerPort: 8000

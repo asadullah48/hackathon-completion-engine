@@ -16,6 +16,12 @@ spec:
       labels:
         {{- include "todo-app.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: frontend
+        version: {{ .Values.frontend.image.tag }}
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "frontend"
+        dapr.io/app-port: "3000"
+        dapr.io/log-level: "info"
     spec:
       containers:
         - name: frontend

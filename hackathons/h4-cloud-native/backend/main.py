@@ -14,12 +14,14 @@ This FastAPI backend provides:
 
 All AI logic runs in the frontend (Zero-Backend-LLM architecture).
 """
+import logging
 import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from database import init_db, get_db
+from services.dapr_service import get_dapr_service
 from routers import (
     todos_router,
     stats_router,
@@ -34,9 +36,12 @@ from routers import (
 from seeds import seed_templates
 
 
+logger = logging.getLogger(__name__)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Initialize database and seed data on startup."""
+    """Initialize database, Dapr, and seed data on startup."""
     init_db()
 
     # Seed templates
@@ -45,6 +50,18 @@ async def lifespan(app: FastAPI):
         seed_templates(db)
     finally:
         db.close()
+
+    # Initialize Dapr sidecar connection (retry for sidecar startup race)
+    import time as _time
+    dapr = get_dapr_service()
+    for attempt in range(10):
+        if dapr.check_health():
+            logger.info("Dapr sidecar connected successfully")
+            break
+        logger.info(f"Waiting for Dapr sidecar (attempt {attempt + 1}/10)...")
+        _time.sleep(2)
+    else:
+        logger.warning("Dapr sidecar not available at startup - will retry on first publish")
 
     yield
 

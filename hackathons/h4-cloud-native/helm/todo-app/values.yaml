@@ -28,10 +28,10 @@ frontend:
 
 # Backend configuration
 backend:
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: todo-backend
-    tag: v1.0.0
+    tag: v1.4.0
     pullPolicy: Never
   service:
     type: ClusterIP

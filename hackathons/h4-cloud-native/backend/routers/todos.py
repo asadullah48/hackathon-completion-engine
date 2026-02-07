@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 from database import get_db
 from models import Todo, TodoCategory, TodoPriority, TodoStatus
 from services import validate_todo, log_decision, create_approval_request, Decision
+from services.dapr_service import publish_todo_event
 
 router = APIRouter(prefix="/api/todos", tags=["todos"])
 
@@ -75,6 +76,7 @@ async def create_todo(todo_data: TodoCreate, db: Session = Depends(get_db)):
 
     # Block if constitutional violation detected
     if result.decision == Decision.BLOCK:
+        publish_todo_event("todo_blocked", todo_id="n/a", title=todo_data.title, reason=result.reason)
         raise HTTPException(
             status_code=403,
             detail={
@@ -109,6 +111,9 @@ async def create_todo(todo_data: TodoCreate, db: Session = Depends(get_db)):
     # Create approval request if flagged
     if result.decision == Decision.FLAG:
         create_approval_request(todo.id, todo.title, todo.description, result)
+        publish_todo_event("todo_flagged", todo.id, title=todo.title, reason=result.reason)
+    else:
+        publish_todo_event("todo_created", todo.id, title=todo.title, category=todo.category.value)
 
     return _format_todo_response(todo)
 
@@ -221,6 +226,8 @@ async def update_todo(todo_id: str, update_data: TodoUpdate, db: Session = Depen
     db.commit()
     db.refresh(todo)
 
+    publish_todo_event("todo_updated", todo.id, title=todo.title, status=todo.status.value)
+
     return _format_todo_response(todo)
 
 
@@ -231,8 +238,11 @@ async def delete_todo(todo_id: str, db: Session = Depends(get_db)):
     if not todo:
         raise HTTPException(status_code=404, detail="Todo not found")
 
+    title = todo.title
     db.delete(todo)
     db.commit()
+
+    publish_todo_event("todo_deleted", todo_id, title=title)
 
     return {"deleted": True, "id": todo_id}
 
