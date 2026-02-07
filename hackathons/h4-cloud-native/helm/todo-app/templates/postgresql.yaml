@@ -70,6 +70,8 @@ spec:
                 - pg_isready
                 - -U
                 - {{ .Values.postgresql.auth.username }}
+                - -d
+                - {{ .Values.postgresql.auth.database }}
             initialDelaySeconds: 30
             periodSeconds: 10
           readinessProbe:
@@ -78,6 +80,8 @@ spec:
                 - pg_isready
                 - -U
                 - {{ .Values.postgresql.auth.username }}
+                - -d
+                - {{ .Values.postgresql.auth.database }}
             initialDelaySeconds: 5
             periodSeconds: 5
   {{- if .Values.postgresql.persistence.enabled }}

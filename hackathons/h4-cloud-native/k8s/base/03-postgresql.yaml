@@ -69,6 +69,8 @@ spec:
             - pg_isready
             - -U
             - todouser
+            - -d
+            - tododb
           initialDelaySeconds: 30
           periodSeconds: 10
         readinessProbe:
@@ -77,6 +79,8 @@ spec:
             - pg_isready
             - -U
             - todouser
+            - -d
+            - tododb
           initialDelaySeconds: 5
           periodSeconds: 5
   volumeClaimTemplates:
