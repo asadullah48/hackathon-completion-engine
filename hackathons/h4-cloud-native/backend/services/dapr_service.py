@@ -99,10 +99,14 @@ def get_dapr_service() -> DaprService:
 
 def publish_todo_event(event_type: str, todo_id: str, **kwargs) -> bool:
     """Convenience function to publish a todo-related event."""
+    from metrics.prometheus_metrics import TODO_EVENTS
     data = {
         "type": event_type,
         "todo_id": todo_id,
         "timestamp": time.time(),
         **kwargs,
     }
-    return _dapr_service.publish_event("todo-events", data)
+    result = _dapr_service.publish_event("todo-events", data)
+    if result:
+        TODO_EVENTS.labels(event_type=event_type).inc()
+    return result

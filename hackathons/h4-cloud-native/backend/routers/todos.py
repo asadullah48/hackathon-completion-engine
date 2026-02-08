@@ -9,6 +9,7 @@ from database import get_db
 from models import Todo, TodoCategory, TodoPriority, TodoStatus
 from services import validate_todo, log_decision, create_approval_request, Decision
 from services.dapr_service import publish_todo_event
+from metrics.prometheus_metrics import TODO_OPS
 
 router = APIRouter(prefix="/api/todos", tags=["todos"])
 
@@ -105,6 +106,8 @@ async def create_todo(todo_data: TodoCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(todo)
 
+    TODO_OPS.labels(operation="create").inc()
+
     # Log the decision
     log_decision(todo.id, todo.title, result)
 
@@ -151,6 +154,7 @@ async def list_todos(
         )
 
     todos = query.order_by(Todo.created_at.desc()).all()
+    TODO_OPS.labels(operation="list").inc()
     return [_format_todo_response(todo) for todo in todos]
 
 
@@ -160,6 +164,7 @@ async def get_todo(todo_id: str, db: Session = Depends(get_db)):
     todo = db.query(Todo).filter(Todo.id == todo_id).first()
     if not todo:
         raise HTTPException(status_code=404, detail="Todo not found")
+    TODO_OPS.labels(operation="read").inc()
     return _format_todo_response(todo)
 
 
@@ -226,6 +231,7 @@ async def update_todo(todo_id: str, update_data: TodoUpdate, db: Session = Depen
     db.commit()
     db.refresh(todo)
 
+    TODO_OPS.labels(operation="update").inc()
     publish_todo_event("todo_updated", todo.id, title=todo.title, status=todo.status.value)
 
     return _format_todo_response(todo)
@@ -242,6 +248,7 @@ async def delete_todo(todo_id: str, db: Session = Depends(get_db)):
     db.delete(todo)
     db.commit()
 
+    TODO_OPS.labels(operation="delete").inc()
     publish_todo_event("todo_deleted", todo_id, title=title)
 
     return {"deleted": True, "id": todo_id}

@@ -22,6 +22,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from database import init_db, get_db
 from services.dapr_service import get_dapr_service
+from metrics.prometheus_metrics import PrometheusMiddleware, metrics_endpoint
 from routers import (
     todos_router,
     stats_router,
@@ -81,6 +82,7 @@ allowed_origins = [origin.strip() for origin in cors_origins.split(",")]
 if cors_origins == "*":
     allowed_origins = ["*"]
 
+app.add_middleware(PrometheusMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
@@ -140,6 +142,12 @@ async def root():
             "Todo-to-calendar sync",
         ],
     }
+
+
+@app.get("/metrics")
+async def get_metrics():
+    """Prometheus metrics endpoint."""
+    return metrics_endpoint()
 
 
 @app.get("/health")
