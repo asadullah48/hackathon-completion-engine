@@ -1,365 +1,198 @@
-# H3 Advanced Todo Application
+# H4: Cloud-Native Todo Application
 
-A full-featured todo application with Constitutional AI validation, team collaboration, AI suggestions, calendar integration, and more.
+> **Panaversity Hackathon II -- Phase 4: Kubernetes + Dapr + Kafka + Observability**
+>
+> Built by [@asadullah48](https://github.com/asadullah48) | Targeting: **Platinum Tier**
 
-## Gold Tier Achievement
+## Achievement Summary
 
-**149 Tests Passing** | Constitutional AI | Team Collaboration | AI Suggestions | Calendar Sync
+| Session | Deliverable | Status |
+|---------|-------------|--------|
+| Session 1 | Kubernetes cluster + Docker containers + 14 manifests | Done |
+| Session 2 | Dapr service mesh + event-driven architecture (5 events) | Done |
+| Session 3 | Kafka (Strimzi KRaft) + Notification microservice + Prometheus | Done |
+| Session 4 | CI/CD pipeline + architecture docs + submission | Done |
 
----
-
-## Overview
-
-The H3 Advanced Todo Application is a sophisticated task management system featuring team collaboration, AI-powered suggestions, calendar integration, and advanced productivity tools. Built with Next.js, Tailwind CSS, and FastAPI, it provides a comprehensive solution for personal and team task management.
-
----
-
-## Features
-
-### Core Features
-- **Todo CRUD**: Create, read, update, delete todos with categories and priorities
-- **Constitutional AI Validation**: Blocks prohibited content (academic dishonesty, hacking, etc.)
-- **Statistics Dashboard**: Track completion rates and productivity
-
-### Recurring Todos
-- **Daily Patterns**: Repeat todos every day
-- **Weekly Patterns**: Repeat on specific days of the week
-- **Monthly Patterns**: Repeat on specific day of month
-- **Custom Intervals**: Define custom repetition intervals
-
-### Templates
-- **Built-in Templates**: Pre-configured task templates
-- **Custom Templates**: Create your own reusable task templates
-- **Template Preview**: Preview todos before creation
-- **Usage Tracking**: Track template popularity
-
-### Team Collaboration
-- **Team Management**: Create and manage teams
-- **Role-Based Access**: Owner, Admin, Editor, Viewer roles
-- **Member Management**: Add, remove, update member roles
-- **Team Todos**: Shared todos within teams
-- **Comments**: Discuss todos with team members
-
-### Todo Assignments
-- **Assign Todos**: Assign tasks to team members
-- **Status Tracking**: Track assignment progress (assigned, accepted, in_progress, completed, declined)
-- **Due Dates**: Set assignment deadlines
-- **Notes**: Add context to assignments
-
-### AI Suggestions
-- **Smart Suggestions**: AI-powered recommendations for todos
-- **Insights**: Productivity insights and patterns
-- **Actionable Items**: Apply suggestions with one click
-- **Suggestion Types**: Priority, breakdown, recurring, deadline, category
-
-### Calendar Integration
-- **Multi-Provider**: Google, Outlook, Apple calendar support
-- **OAuth Flow**: Secure calendar connection
-- **Sync Options**: Todo-to-calendar, calendar-to-todo, bidirectional
-- **Event Management**: Create, view, delete calendar events
-
----
-
-## Tech Stack
-
-### Backend
-- **Framework**: FastAPI (Python 3.12)
-- **Database**: SQLAlchemy ORM with SQLite
-- **Validation**: Pydantic schemas
-- **Testing**: pytest with 149 tests
-
-### Frontend
-- **Framework**: Next.js 14 (React)
-- **State Management**: Zustand
-- **Styling**: Tailwind CSS
-- **Components**: Custom UI with Lucide icons
-
----
-
-## Project Structure
+## Architecture
 
 ```
-h3-advanced-todo/
-├── backend/
-│   ├── main.py              # FastAPI application entry
-│   ├── database.py          # Database configuration
-│   ├── models/              # SQLAlchemy models
-│   │   ├── todo.py          # Todo model
-│   │   ├── recurring_todo.py # Recurring todo model
-│   │   ├── template.py      # Template model
-│   │   ├── user.py          # User model
-│   │   ├── team.py          # Team & member models
-│   │   ├── assignment.py    # Assignment model
-│   │   ├── suggestion.py    # AI suggestion model
-│   │   └── calendar.py      # Calendar connection model
-│   ├── routers/             # API route handlers
-│   │   ├── todos.py         # Todo CRUD endpoints
-│   │   ├── recurring.py     # Recurring todo endpoints
-│   │   ├── templates.py     # Template endpoints
-│   │   ├── users.py         # User endpoints
-│   │   ├── teams.py         # Team & member endpoints
-│   │   ├── assignments.py   # Assignment endpoints
-│   │   ├── suggestions.py   # AI suggestion endpoints
-│   │   ├── calendar.py      # Calendar endpoints
-│   │   └── stats.py         # Statistics endpoints
-│   ├── services/            # Business logic
-│   │   ├── constitutional_validator.py  # Content validation
-│   │   ├── recurring_service.py         # Recurring logic
-│   │   ├── team_service.py              # Team operations
-│   │   ├── suggestion_service.py        # AI suggestions
-│   │   └── calendar_service.py          # Calendar sync
-│   └── tests/               # Test suite (149 tests)
-│       ├── conftest.py      # Shared fixtures
-│       ├── test_constitutional.py
-│       ├── test_crud.py
-│       ├── test_recurring.py
-│       ├── test_templates.py
-│       ├── test_users.py
-│       ├── test_teams.py
-│       ├── test_assignments.py
-│       ├── test_suggestions.py
-│       └── test_calendar.py
-├── frontend/
-│   ├── app/
-│   │   └── page.tsx         # Main page with tabs
-│   ├── components/
-│   │   ├── AISuggestions.tsx
-│   │   ├── CalendarIntegration.tsx
-│   │   ├── TeamSelector.tsx
-│   │   ├── TeamMembersList.tsx
-│   │   └── ...
-│   ├── lib/
-│   │   ├── api.ts           # API client
-│   │   ├── store.ts         # Zustand store
-│   │   └── types.ts         # TypeScript types
-│   └── package.json
-├── INTEGRATION_TEST_CHECKLIST.md
-└── README.md
+Frontend (Next.js + Dapr) --> Backend (FastAPI + Dapr) --> Kafka --> Notification Service
+                                        |
+                                PostgreSQL + Redis + Prometheus
 ```
 
----
+See [docs/architecture.md](docs/architecture.md) for full architecture diagram.
+
+## Technology Stack
+
+- **Orchestration**: Kubernetes (Minikube v1.35.0)
+- **Service Mesh**: Dapr (sidecar pattern)
+- **Event Streaming**: Apache Kafka (Strimzi KRaft v4.0.0 -- no ZooKeeper)
+- **Backend**: Python FastAPI + Prometheus metrics
+- **Frontend**: Next.js 14
+- **Database**: PostgreSQL 15 (StatefulSet with PVC)
+- **State/Cache**: Redis 7
+- **Monitoring**: Prometheus (scraping 4 targets)
+- **CI/CD**: GitHub Actions (test -> build -> validate -> security scan)
+
+## Key Technical Achievements
+
+### Zero-Downtime Infrastructure Migration
+Switched Dapr pub/sub from Redis to Kafka with zero application code changes -- Dapr's abstraction layer made the infrastructure swap completely transparent.
+
+### Resource-Constrained Cloud-Native
+Deployed full production stack (Kafka + Dapr + Prometheus + 3 microservices) within a 6GB Minikube cluster at only 44% memory utilization through careful resource budgeting.
+
+### Event-Driven Microservices
+5 event types flowing through Kafka with durable persistence, consumed by a dedicated Notification microservice -- true event sourcing pattern.
+
+### Production-Grade Observability
+Custom Prometheus metrics (4 metric types) with automatic scraping of application metrics AND Dapr sidecar metrics across all services.
 
 ## Quick Start
 
 ### Prerequisites
-- Python 3.12+
-- Node.js 18+
-- npm or yarn
+- Docker Desktop
+- Minikube
+- kubectl
+- Dapr CLI
+- Helm (optional)
 
-### Backend Setup
-
-```bash
-# Navigate to backend
-cd hackathons/h3-advanced-todo/backend
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the server
-python3 -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
-
-# API available at http://localhost:8000
-# Docs at http://localhost:8000/docs
-```
-
-### Frontend Setup
+### Deploy
 
 ```bash
-# Navigate to frontend
-cd hackathons/h3-advanced-todo/frontend
+# Start cluster
+minikube start --memory=6144 --cpus=4
 
-# Install dependencies
-npm install
+# Create namespace
+kubectl apply -f k8s/base/00-namespace.yaml
 
-# Run development server
-npm run dev
+# Deploy infrastructure
+kubectl apply -f k8s/base/01-configmap.yaml
+kubectl apply -f k8s/base/02-secret.yaml
+kubectl apply -f k8s/base/03-postgresql.yaml
+kubectl apply -f k8s/base/06-redis.yaml
 
-# App available at http://localhost:3000
+# Install Dapr
+dapr init -k
+kubectl apply -f k8s/base/07-dapr-statestore.yaml
+kubectl apply -f k8s/base/11-dapr-pubsub-kafka.yaml
+
+# Deploy Kafka (Strimzi)
+kubectl create namespace kafka
+kubectl apply -f 'https://strimzi.io/install/latest?namespace=kafka' -n kafka
+kubectl apply -f k8s/base/09-kafka.yaml
+kubectl apply -f k8s/base/10-kafka-topics.yaml
+
+# Deploy applications
+kubectl apply -f k8s/base/04-backend.yaml
+kubectl apply -f k8s/base/05-frontend.yaml
+kubectl apply -f k8s/base/12-notification-service.yaml
+
+# Deploy monitoring
+kubectl apply -f k8s/base/13-prometheus.yaml
+
+# Verify
+kubectl get pods -n todo-app
+kubectl get pods -n kafka
 ```
 
-### Run Tests
+### Access Services
 
 ```bash
-# Navigate to backend
-cd hackathons/h3-advanced-todo/backend
+# Backend API
+kubectl port-forward -n todo-app svc/backend 8000:8000
 
-# Run all tests
-python3 -m pytest tests/ -v
+# Frontend
+kubectl port-forward -n todo-app svc/frontend 3000:3000
 
-# Run with coverage
-python3 -m pytest tests/ -v --cov=. --cov-report=html
+# Prometheus
+kubectl port-forward -n todo-app svc/prometheus 9090:9090
+
+# Metrics
+curl http://localhost:8000/metrics
 ```
 
----
+## Project Structure
 
-## API Reference
+```
+h4-cloud-native/
+├── .github/workflows/ci-cd.yaml    # CI/CD pipeline
+├── backend/
+│   ├── main.py                     # FastAPI app + Dapr init
+│   ├── routers/todos.py            # CRUD + event publishing
+│   ├── services/
+│   │   ├── dapr_service.py         # Dapr HTTP client
+│   │   └── notification_service.py # Kafka consumer
+│   └── metrics/
+│       └── prometheus_metrics.py   # Custom metrics
+├── frontend/                       # Next.js 14 app
+├── docker/
+│   ├── backend.Dockerfile          # Multi-stage build
+│   ├── frontend.Dockerfile         # Multi-stage build
+│   └── notification.Dockerfile     # Lightweight consumer
+├── k8s/base/                       # 14 Kubernetes manifests
+│   ├── 00-namespace.yaml
+│   ├── 01-configmap.yaml
+│   ├── 02-secret.yaml
+│   ├── 03-postgresql.yaml          # StatefulSet + PVC
+│   ├── 04-backend.yaml             # + Dapr annotations
+│   ├── 05-frontend.yaml            # + Dapr annotations
+│   ├── 06-redis.yaml
+│   ├── 07-dapr-statestore.yaml     # Dapr Component
+│   ├── 08-dapr-pubsub.yaml         # Redis pub/sub (legacy)
+│   ├── 09-kafka.yaml               # Strimzi KRaft
+│   ├── 10-kafka-topics.yaml        # 3 topics
+│   ├── 11-dapr-pubsub-kafka.yaml   # Dapr Kafka pub/sub
+│   ├── 12-notification-service.yaml # + Dapr annotations
+│   └── 13-prometheus.yaml          # + RBAC
+├── helm/todo-app/                  # Helm chart
+├── scripts/
+│   ├── deploy.sh                   # Deployment automation
+│   ├── build-images.sh             # Docker build script
+│   ├── access-app.sh               # Port-forwarding helper
+│   └── verify-cluster.sh           # Cluster health check
+├── docs/
+│   ├── architecture.md             # Full architecture diagram
+│   ├── SESSION-1-DEPLOYMENT.md
+│   ├── H4-SESSION-SUMMARY.md
+│   ├── session-3-kafka-observability.md
+│   └── session-4-cicd-docs.md
+└── README.md                       # This file
+```
 
-### Todos
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/todos | List all todos |
-| POST | /api/todos | Create a todo |
-| GET | /api/todos/{id} | Get a todo |
-| PUT | /api/todos/{id} | Update a todo |
-| DELETE | /api/todos/{id} | Delete a todo |
-| GET | /api/stats | Get statistics |
+## Hackathon Journey (H0 -> H4)
 
-### Recurring Todos
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/recurring | List recurring patterns |
-| POST | /api/recurring | Create recurring pattern |
-| GET | /api/recurring/{id} | Get pattern details |
-| POST | /api/recurring/{id}/generate | Generate occurrence |
-| GET | /api/recurring/{id}/preview | Preview occurrences |
-| DELETE | /api/recurring/{id} | Delete pattern |
+| Hackathon | Project | Tier | Code Reuse |
+|-----------|---------|------|------------|
+| H0 | Personal AI CTO | Bronze | -- |
+| H1 | Course Companion | Silver | 60% |
+| H2 | AI-Powered Todo | Silver | 70% |
+| H3 | Advanced Todo (149 tests) | Gold | 85% |
+| **H4** | **Cloud-Native Deployment** | **Platinum** | **90%+** |
 
-### Templates
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/templates | List templates |
-| POST | /api/templates | Create template |
-| GET | /api/templates/{id} | Get template |
-| POST | /api/templates/{id}/use | Use template |
-| GET | /api/templates/{id}/preview | Preview template |
-| DELETE | /api/templates/{id} | Delete template |
+## Platinum Tier Criteria Met
 
-### Users
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/users | List users |
-| POST | /api/users | Create user |
-| GET | /api/users/{id} | Get user |
-| PUT | /api/users/{id} | Update user |
-| GET | /api/users/{id}/assignments | Get user's assignments |
+- [x] Kubernetes deployment with multiple services
+- [x] Dapr service mesh with sidecar injection
+- [x] Event-driven architecture (Kafka pub/sub)
+- [x] Multiple microservices (Backend, Frontend, Notification)
+- [x] Persistent storage (PostgreSQL StatefulSet + PVC)
+- [x] Observability (Prometheus metrics + scraping)
+- [x] CI/CD pipeline (GitHub Actions)
+- [x] Comprehensive documentation
+- [x] Resource-constrained optimization (6GB cluster)
 
-### Teams
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/teams | List user's teams |
-| POST | /api/teams | Create team |
-| GET | /api/teams/{id} | Get team |
-| PUT | /api/teams/{id} | Update team |
-| DELETE | /api/teams/{id} | Delete team |
-| GET | /api/teams/{id}/members | List members |
-| POST | /api/teams/{id}/members | Add member |
-| PUT | /api/teams/{id}/members/{user_id} | Update role |
-| DELETE | /api/teams/{id}/members/{user_id} | Remove member |
-| GET | /api/teams/{id}/todos | List team todos |
+## Session Documentation
 
-### Assignments
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /api/todos/{id}/assign | Assign todo |
-| GET | /api/todos/{id}/assignments | Get todo assignments |
-| PUT | /api/assignments/{id} | Update assignment |
-| DELETE | /api/assignments/{id} | Remove assignment |
+- [Session 1: Kubernetes Setup](docs/SESSION-1-DEPLOYMENT.md)
+- [Session 2: Dapr Integration](docs/H4-SESSION-SUMMARY.md)
+- [Session 3: Kafka + Observability](docs/session-3-kafka-observability.md)
+- [Session 4: CI/CD + Docs](docs/session-4-cicd-docs.md)
 
-### AI Suggestions
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/suggestions | List suggestions |
-| POST | /api/suggestions/generate/{todo_id} | Generate for todo |
-| POST | /api/suggestions/insights/{user_id} | Generate insights |
-| PUT | /api/suggestions/{id} | Update suggestion |
-| POST | /api/suggestions/{id}/apply | Apply suggestion |
-| DELETE | /api/suggestions/{id} | Delete suggestion |
+## Author
 
-### Calendar
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /api/calendar/connect/{provider} | Initiate connection |
-| POST | /api/calendar/callback/{id} | Complete OAuth |
-| GET | /api/calendar/connections | List connections |
-| GET | /api/calendar/connections/{id} | Get connection |
-| PUT | /api/calendar/connections/{id}/settings | Update settings |
-| DELETE | /api/calendar/connections/{id} | Disconnect |
-| GET | /api/calendar/events | List events |
-| POST | /api/calendar/events | Create event |
-| DELETE | /api/calendar/events/{id} | Delete event |
-| POST | /api/calendar/sync | Sync all todos |
-| POST | /api/calendar/sync/{todo_id} | Sync single todo |
-
----
-
-## Constitutional AI
-
-The application uses Constitutional AI to ensure todos are ethical and appropriate:
-
-### Blocked Content
-- Academic dishonesty (homework completion, exam answers)
-- Hacking and security exploits
-- Cheating and plagiarism
-- Fraudulent document creation
-- Harassment content
-
-### Allowed Content
-- Study and learning tasks
-- Work-related tasks
-- Personal development
-- Exercise and health
-- Research and exploration
-
-### Flagged Content
-- Content marked as urgent (reviewed but allowed)
-- Time-sensitive items
-
----
-
-## Team Roles
-
-| Role | Create Todos | Edit Todos | Manage Members | Delete Team |
-|------|-------------|------------|----------------|-------------|
-| Owner | Yes | Yes | Yes | Yes |
-| Admin | Yes | Yes | Yes | No |
-| Editor | Yes | Yes | No | No |
-| Viewer | No | No | No | No |
-
----
-
-## Development Sessions
-
-### Session 1: Core + Recurring + Templates
-- Constitutional AI validation
-- CRUD operations
-- Recurring todo patterns
-- Template system
-
-### Session 2: Team Collaboration
-- User management
-- Team creation
-- Role-based permissions
-- Todo assignments
-
-### Session 3: AI + Calendar
-- AI suggestion engine
-- User insights
-- Calendar integration (Google/Outlook/Apple)
-- Todo-calendar sync
-
-### Session 4: Integration & Gold Tier
-- 149 comprehensive tests
-- Integration test checklist
-- Full documentation
-
----
-
-## Keyboard Shortcuts
-
-| Shortcut | Action |
-|----------|--------|
-| Ctrl + N | Create new todo |
-| Ctrl + Shift + N | Create new team |
-| Ctrl + E | Edit selected todo |
-| Ctrl + D | Delete selected todo |
-| Ctrl + K | Show keyboard shortcuts |
-
----
-
-## License
-
-MIT License
-
----
-
-*Built for Hackathon H3 - Gold Tier Achieved*
+**Asadullah Shafique**
+- GitHub: [@asadullah48](https://github.com/asadullah48)
+- GIAIC Roll: 00458550
+- Program: Panaversity Hackathon II
