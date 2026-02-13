@@ -88,3 +88,15 @@ docs/_build/
 # Local development
 local/
 .local/
+
+# Node.js
+node_modules/
+
+# Next.js
+.next/
+
+# Database files
+*.db
+
+# Binaries
+minikube-linux-amd64

@@ -28,6 +28,9 @@ from routers import chat, progress
 # Import middleware
 from middleware.constitutional_filter import ConstitutionalFilter
 
+# Import Dapr service
+from services.dapr_service import get_dapr_service
+
 # Initialize FastAPI app
 app = FastAPI(
     title="Course Companion API",
@@ -46,6 +49,20 @@ app.add_middleware(
 
 # Constitutional filter middleware
 constitutional_filter = ConstitutionalFilter()
+
+# Initialize Dapr service
+dapr_service = get_dapr_service()
+
+
+@app.on_event('startup')
+async def startup_event():
+    """Initialize Dapr service on application startup"""
+    try:
+        dapr_service.initialize()
+        logger.info("Dapr service initialized successfully")
+    except Exception as e:
+        logger.error(f"Failed to initialize Dapr service: {str(e)}")
+        # Continue without Dapr if initialization fails
 
 
 @app.middleware("http")

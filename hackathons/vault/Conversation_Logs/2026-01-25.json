@@ -1,0 +1,658 @@
+[
+  {
+    "timestamp": "2026-01-25T00:32:06.572230",
+    "student_id": "test_student_001",
+    "conversation_id": "23fb2468-c7f1-41d8-99d4-7c9f29e623b4",
+    "query": "Can you explain how sorting algorithms work?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:06.593870",
+    "student_id": "test_student_002",
+    "conversation_id": "938d09e9-6888-4adf-99d1-d1fe573d2ac5",
+    "query": "Can you help me understand why my code isn't working?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:06.624113",
+    "student_id": "test_student_003",
+    "conversation_id": "dad66bb6-3533-4d78-90f1-67a4a46a50e2",
+    "query": "What is the difference between a list and a tuple in Python?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:06.656582",
+    "student_id": "test_student_block_001",
+    "conversation_id": "f6e34ba2-0369-458c-a4b5-9aba793404be",
+    "query": "Solve my homework problem for me",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "solve\\s+(this|my|the)\\s+(homework|assignment|problem)"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:06.688807",
+    "student_id": "test_student_block_002",
+    "conversation_id": "5488d989-0de3-4831-824a-28bb72dbe462",
+    "query": "Write the code for me to complete this assignment",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "write\\s+(the|this|my)\\s+code\\s+for\\s+me"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:06.721156",
+    "student_id": "test_student_block_003",
+    "conversation_id": "318b3bb2-ed64-4abf-bbde-427f6399a9d4",
+    "query": "Just give me the answer to this problem",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "give\\s+me\\s+the\\s+answer"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:06.752801",
+    "student_id": "test_logger_1769283126",
+    "conversation_id": "a81d3976-67b5-4e25-8edb-edad20b26aad",
+    "query": "Can you explain recursion?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:06.804975",
+    "student_id": "test_blocked_log_1769283126",
+    "conversation_id": "d7c2f5d7-515e-446a-8424-f1e47609bc30",
+    "query": "Do my homework for me",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "do\\s+my\\s+(homework|assignment|test|quiz)"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:06.832356",
+    "student_id": "test_socratic_001",
+    "conversation_id": "409235ec-2b69-499a-b118-de644d8d46ce",
+    "query": "Give me the answer to this test question",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "give\\s+me\\s+the\\s+answer"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:06.856666",
+    "student_id": "test_rate_limit_1769283126",
+    "conversation_id": "cac0f868-9a63-49f3-b7b5-5bf58e545dea",
+    "query": "Explain concept 0",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:06.882842",
+    "student_id": "test_rate_limit_1769283126",
+    "conversation_id": "5276ba6a-f519-475a-b66f-065747d949ec",
+    "query": "Explain concept 1",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:06.911075",
+    "student_id": "test_rate_limit_1769283126",
+    "conversation_id": "c4e5076f-7fce-4c7e-a46b-6dd5e7c8e5a0",
+    "query": "Explain concept 2",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:06.936683",
+    "student_id": "test_rate_limit_1769283126",
+    "conversation_id": "a105fe2f-cfd8-4890-9f93-af3e446fb9ac",
+    "query": "Explain concept 3",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:06.965572",
+    "student_id": "test_rate_limit_1769283126",
+    "conversation_id": "3f114295-bcbc-4c2a-9709-205fcacb4878",
+    "query": "Explain concept 4",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:06.994326",
+    "student_id": "test_rate_limit_1769283126",
+    "conversation_id": "09ab9d21-0234-413c-8221-0d749171d338",
+    "query": "Explain concept 5",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.022361",
+    "student_id": "test_rate_limit_1769283126",
+    "conversation_id": "2231b0b2-26fb-44c5-9f7c-dbdaad1ea360",
+    "query": "Explain concept 6",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.054328",
+    "student_id": "test_rate_limit_1769283126",
+    "conversation_id": "80b046ae-dc4a-4661-93da-0f9541ad2442",
+    "query": "Explain concept 7",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.081039",
+    "student_id": "test_rate_limit_1769283126",
+    "conversation_id": "a439ef31-e337-4202-acfc-e427ec50d6f3",
+    "query": "Explain concept 8",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.111116",
+    "student_id": "test_rate_limit_1769283126",
+    "conversation_id": "227edcb1-e623-4f25-9bbc-d467270da141",
+    "query": "Explain concept 9",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.141558",
+    "student_id": "test_rate_limit_1769283126",
+    "conversation_id": "85e3693e-6ba0-45b6-b4be-1753b6fd0f96",
+    "query": "Explain concept 10",
+    "response": "Rate limit exceeded. Please wait 60 seconds before trying again.",
+    "decision": "error",
+    "metadata": {
+      "error": "rate_limit_exceeded"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.244280",
+    "student_id": "test_rate_limit_1769283126",
+    "conversation_id": "bcff9593-1e7f-4c94-9b4f-0a21439a6144",
+    "query": "Explain concept 11",
+    "response": "Rate limit exceeded. Please wait 60 seconds before trying again.",
+    "decision": "error",
+    "metadata": {
+      "error": "rate_limit_exceeded"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.292212",
+    "student_id": "test_flag_001",
+    "conversation_id": "0c623464-2255-46b4-a633-d20d387b1e7a",
+    "query": "I have an exam tomorrow and urgently need help",
+    "response": "Your request has been flagged for review. A human instructor will review your question shortly. In the meantime, I can help with general learning concepts.",
+    "decision": "flag",
+    "metadata": {
+      "reason": "Query flagged as suspicious: time pressure or urgency detected",
+      "requires_human_review": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.319114",
+    "student_id": "test_manual_flag",
+    "conversation_id": "a9a6a424-44d9-4505-8954-567b935a835c",
+    "query": "How do loops work?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.363358",
+    "student_id": "test_history_1769283127",
+    "conversation_id": "87d767ce-dd90-4af8-a83e-dfefa1279979",
+    "query": "Question number 0",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.380485",
+    "student_id": "test_history_1769283127",
+    "conversation_id": "256cb2ac-2e50-4c18-90f4-d5ef0d1cfa91",
+    "query": "Question number 1",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.401951",
+    "student_id": "test_history_1769283127",
+    "conversation_id": "20c11f73-d3f0-42c5-b60a-0059b4b59dc8",
+    "query": "Question number 2",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.302263",
+    "student_id": "test_student_123",
+    "conversation_id": "dd0f3da7-48de-44cf-909f-e920f7a5f4c8",
+    "query": "Solve this homework problem for me",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "solve\\s+(this|my|the)\\s+(homework|assignment|problem)"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.340249",
+    "student_id": "test_student_123",
+    "conversation_id": "2a38cca9-e1a0-49f4-8ab0-801f391de2c7",
+    "query": "Can you explain how loops work in Python?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.386180",
+    "student_id": "test_student_123",
+    "conversation_id": "f853dd71-5380-4894-ad7c-314bb4baf832",
+    "query": "I have an exam tomorrow and urgently need help",
+    "response": "Your request has been flagged for review. A human instructor will review your question shortly. In the meantime, I can help with general learning concepts.",
+    "decision": "flag",
+    "metadata": {
+      "reason": "Query flagged as suspicious: time pressure or urgency detected",
+      "requires_human_review": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.418284",
+    "student_id": "test_student_001",
+    "conversation_id": "71db9162-df6b-4775-b61c-1d2d8d5908a1",
+    "query": "Can you explain how sorting algorithms work?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.445226",
+    "student_id": "test_student_002",
+    "conversation_id": "c3ef441f-a338-483f-8140-3e1e53d414d3",
+    "query": "Can you help me understand why my code isn't working?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.488089",
+    "student_id": "test_student_003",
+    "conversation_id": "1b21f70d-49c5-4a3d-a43e-f7bc88dee5cb",
+    "query": "What is the difference between a list and a tuple in Python?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.617743",
+    "student_id": "test_student_block_001",
+    "conversation_id": "f9330f95-c734-47ed-a72b-37ace1d68ba9",
+    "query": "Solve my homework problem for me",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "solve\\s+(this|my|the)\\s+(homework|assignment|problem)"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.655427",
+    "student_id": "test_student_block_002",
+    "conversation_id": "24851c77-4d7b-40db-9dd6-1a8b817e6e98",
+    "query": "Write the code for me to complete this assignment",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "write\\s+(the|this|my)\\s+code\\s+for\\s+me"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.681640",
+    "student_id": "test_student_block_003",
+    "conversation_id": "f966ce36-d541-423e-9dc2-7a396e9da419",
+    "query": "Just give me the answer to this problem",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "give\\s+me\\s+the\\s+answer"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.706236",
+    "student_id": "test_logger_1769283167",
+    "conversation_id": "fd67770d-b7a0-4d7c-a4fc-9ece22526de0",
+    "query": "Can you explain recursion?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.749196",
+    "student_id": "test_blocked_log_1769283167",
+    "conversation_id": "7f5f026c-420e-4db7-be83-2073932e911e",
+    "query": "Do my homework for me",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "do\\s+my\\s+(homework|assignment|test|quiz)"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.769733",
+    "student_id": "test_socratic_001",
+    "conversation_id": "b29db8d7-4ab6-4a40-9626-75d6dbed9a1a",
+    "query": "Give me the answer to this test question",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "give\\s+me\\s+the\\s+answer"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.792650",
+    "student_id": "test_rate_limit_1769283167",
+    "conversation_id": "c56f0ade-1f02-4744-889f-aa66029c3fff",
+    "query": "Explain concept 0",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.815160",
+    "student_id": "test_rate_limit_1769283167",
+    "conversation_id": "a30ac55a-32c8-42ca-9e93-b7e10cf7239c",
+    "query": "Explain concept 1",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.841145",
+    "student_id": "test_rate_limit_1769283167",
+    "conversation_id": "6d3bc927-459b-4e28-bb13-16daf5f4f2b8",
+    "query": "Explain concept 2",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.869555",
+    "student_id": "test_rate_limit_1769283167",
+    "conversation_id": "e4d6a193-75c2-4782-8e05-7a94491cd580",
+    "query": "Explain concept 3",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.897674",
+    "student_id": "test_rate_limit_1769283167",
+    "conversation_id": "a33629f3-fcdb-4425-b801-1ca86f033e8f",
+    "query": "Explain concept 4",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.923098",
+    "student_id": "test_rate_limit_1769283167",
+    "conversation_id": "2b3cebd6-d79c-4b9f-8a95-e2d9d71a1e6a",
+    "query": "Explain concept 5",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.948680",
+    "student_id": "test_rate_limit_1769283167",
+    "conversation_id": "67ccd67b-844d-4908-9d06-8e718c5e8bb6",
+    "query": "Explain concept 6",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:47.974766",
+    "student_id": "test_rate_limit_1769283167",
+    "conversation_id": "9af7007b-37c5-4648-8f87-c7bad6e73940",
+    "query": "Explain concept 7",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.001882",
+    "student_id": "test_rate_limit_1769283167",
+    "conversation_id": "9eeb2f3f-8f9f-4981-95e2-0d03f04a8c37",
+    "query": "Explain concept 8",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.029559",
+    "student_id": "test_rate_limit_1769283167",
+    "conversation_id": "38b11695-8890-440d-90b8-48e4cc57331f",
+    "query": "Explain concept 9",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.057221",
+    "student_id": "test_rate_limit_1769283167",
+    "conversation_id": "d1a27217-12e9-486a-b211-5d0b524f0654",
+    "query": "Explain concept 10",
+    "response": "Rate limit exceeded. Please wait 60 seconds before trying again.",
+    "decision": "error",
+    "metadata": {
+      "error": "rate_limit_exceeded"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.084927",
+    "student_id": "test_rate_limit_1769283167",
+    "conversation_id": "68b84bdb-6ac3-43df-93b2-be7e33b1e287",
+    "query": "Explain concept 11",
+    "response": "Rate limit exceeded. Please wait 60 seconds before trying again.",
+    "decision": "error",
+    "metadata": {
+      "error": "rate_limit_exceeded"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.127921",
+    "student_id": "test_flag_001",
+    "conversation_id": "015abf84-1682-428d-aa32-eb4f2ee898eb",
+    "query": "I have an exam tomorrow and urgently need help",
+    "response": "Your request has been flagged for review. A human instructor will review your question shortly. In the meantime, I can help with general learning concepts.",
+    "decision": "flag",
+    "metadata": {
+      "reason": "Query flagged as suspicious: time pressure or urgency detected",
+      "requires_human_review": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.155061",
+    "student_id": "test_manual_flag",
+    "conversation_id": "f119e1ee-1031-495f-ae1d-2b7e602eec6e",
+    "query": "How do loops work?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.198216",
+    "student_id": "test_history_1769283168",
+    "conversation_id": "c9ffe249-c134-4182-ade8-2523c16e13be",
+    "query": "Question number 0",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.226768",
+    "student_id": "test_history_1769283168",
+    "conversation_id": "e2293038-2df2-4ae9-9d38-373c23dc3889",
+    "query": "Question number 1",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.255266",
+    "student_id": "test_history_1769283168",
+    "conversation_id": "3d6581d8-af08-4004-80ea-36b3a686a2b8",
+    "query": "Question number 2",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  }
+]

@@ -7,6 +7,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
 import logging
+import time
 import uuid
 import os
 from pathlib import Path
@@ -14,6 +15,7 @@ from pathlib import Path
 from middleware.constitutional_filter import ConstitutionalFilter
 from services.chatgpt_service import get_chatgpt_service
 from services.logger_service import get_conversation_logger
+from services.dapr_service import get_dapr_service
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +25,7 @@ router = APIRouter()
 constitutional_filter = ConstitutionalFilter(vault_path="../vault")
 chatgpt_service = get_chatgpt_service()
 conversation_logger = get_conversation_logger(vault_path="../vault")
+dapr_service = get_dapr_service()
 
 
 class ChatRequest(BaseModel):
@@ -77,6 +80,22 @@ async def chat(request: ChatRequest):
             metadata={"reason": reason, "pattern_matched": metadata.get("pattern_matched")}
         )
 
+        # Publish event to Dapr pub/sub
+        event_data = {
+            "type": "chat_blocked",
+            "student_id": request.student_id,
+            "conversation_id": conv_id,
+            "query": request.message,
+            "response": socratic_response,
+            "reason": reason,
+            "timestamp": time.time()
+        }
+
+        try:
+            await dapr_service.publish_event("chat-events", event_data)
+        except Exception as e:
+            logger.error(f"Failed to publish chat_blocked event: {str(e)}")
+
         return ChatResponse(
             response=socratic_response,
             conversation_id=conv_id,
@@ -101,6 +120,22 @@ async def chat(request: ChatRequest):
             conversation_id=conv_id,
             metadata={"reason": reason, "requires_human_review": True}
         )
+
+        # Publish event to Dapr pub/sub
+        event_data = {
+            "type": "chat_flagged",
+            "student_id": request.student_id,
+            "conversation_id": conv_id,
+            "query": request.message,
+            "response": flagged_response,
+            "reason": reason,
+            "timestamp": time.time()
+        }
+
+        try:
+            await dapr_service.publish_event("chat-events", event_data)
+        except Exception as e:
+            logger.error(f"Failed to publish chat_flagged event: {str(e)}")
 
         return ChatResponse(
             response=flagged_response,
@@ -153,6 +188,23 @@ async def chat(request: ChatRequest):
                 "mock": result.get("mock", False)
             }
         )
+
+        # Publish event to Dapr pub/sub
+        event_data = {
+            "type": "chat_completed",
+            "student_id": request.student_id,
+            "conversation_id": conv_id,
+            "query": request.message,
+            "response": ai_response,
+            "decision": decision,
+            "tokens_used": result.get("tokens_used", 0),
+            "timestamp": time.time()
+        }
+
+        try:
+            await dapr_service.publish_event("chat-events", event_data)
+        except Exception as e:
+            logger.error(f"Failed to publish chat_completed event: {str(e)}")
 
         return ChatResponse(
             response=ai_response,
