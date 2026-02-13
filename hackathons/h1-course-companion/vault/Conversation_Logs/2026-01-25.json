@@ -1,0 +1,356 @@
+[
+  {
+    "timestamp": "2026-01-25T00:32:07.536668",
+    "student_id": "test_student_1769283127536",
+    "conversation_id": null,
+    "query": "How does recursion work?",
+    "response": "Great question! What do you already know about functions calling themselves?",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.556214",
+    "student_id": "test_student_1769283127555",
+    "conversation_id": "conv_1769283127",
+    "query": "Test query",
+    "response": "Test response",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.584905",
+    "student_id": "test_student_1769283127584",
+    "conversation_id": null,
+    "query": "Explain recursion",
+    "response": "Recursion is...",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 150,
+      "mock": false,
+      "concepts": [
+        "recursion",
+        "functions"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.616110",
+    "student_id": "test_student_1769283127615",
+    "conversation_id": null,
+    "query": "Question 0",
+    "response": "Answer 0",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.633147",
+    "student_id": "test_student_1769283127615",
+    "conversation_id": null,
+    "query": "Question 1",
+    "response": "Answer 1",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.663252",
+    "student_id": "test_student_1769283127615",
+    "conversation_id": null,
+    "query": "Question 2",
+    "response": "Answer 2",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.742434",
+    "student_id": "test_student_1769283127741",
+    "conversation_id": null,
+    "query": "Test query",
+    "response": "Test response",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.789687",
+    "student_id": "test_student_1769283127789",
+    "conversation_id": null,
+    "query": "Query 0",
+    "response": "Response 0",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.805531",
+    "student_id": "test_student_1769283127789",
+    "conversation_id": null,
+    "query": "Query 1",
+    "response": "Response 1",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.832683",
+    "student_id": "test_student_1769283127789",
+    "conversation_id": null,
+    "query": "Query 2",
+    "response": "Response 2",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.860109",
+    "student_id": "test_student_1769283127789",
+    "conversation_id": null,
+    "query": "Query 3",
+    "response": "Response 3",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.886904",
+    "student_id": "test_student_1769283127789",
+    "conversation_id": null,
+    "query": "Query 4",
+    "response": "Response 4",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.937957",
+    "student_id": "test_student_1769283127937",
+    "conversation_id": null,
+    "query": "Question 0",
+    "response": "Answer 0",
+    "decision": "allow",
+    "metadata": {
+      "concepts": [
+        "concept_0"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.951595",
+    "student_id": "test_student_1769283127937",
+    "conversation_id": null,
+    "query": "Question 1",
+    "response": "Answer 1",
+    "decision": "allow",
+    "metadata": {
+      "concepts": [
+        "concept_1"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:07.972102",
+    "student_id": "test_student_1769283127937",
+    "conversation_id": null,
+    "query": "Question 2",
+    "response": "Answer 2",
+    "decision": "allow",
+    "metadata": {
+      "concepts": [
+        "concept_2"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:08.033968",
+    "student_id": "test_student_1769283128033",
+    "conversation_id": null,
+    "query": "Urgent help needed for exam tomorrow",
+    "response": "Flagged for review",
+    "decision": "flag",
+    "metadata": {
+      "requires_human_review": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.433627",
+    "student_id": "test_student_1769283168433",
+    "conversation_id": null,
+    "query": "How does recursion work?",
+    "response": "Great question! What do you already know about functions calling themselves?",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.464065",
+    "student_id": "test_student_1769283168463",
+    "conversation_id": "conv_1769283168",
+    "query": "Test query",
+    "response": "Test response",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.495318",
+    "student_id": "test_student_1769283168494",
+    "conversation_id": null,
+    "query": "Explain recursion",
+    "response": "Recursion is...",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 150,
+      "mock": false,
+      "concepts": [
+        "recursion",
+        "functions"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.527110",
+    "student_id": "test_student_1769283168526",
+    "conversation_id": null,
+    "query": "Question 0",
+    "response": "Answer 0",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.549563",
+    "student_id": "test_student_1769283168526",
+    "conversation_id": null,
+    "query": "Question 1",
+    "response": "Answer 1",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.580228",
+    "student_id": "test_student_1769283168526",
+    "conversation_id": null,
+    "query": "Question 2",
+    "response": "Answer 2",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.668142",
+    "student_id": "test_student_1769283168667",
+    "conversation_id": null,
+    "query": "Test query",
+    "response": "Test response",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.721560",
+    "student_id": "test_student_1769283168721",
+    "conversation_id": null,
+    "query": "Query 0",
+    "response": "Response 0",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.742463",
+    "student_id": "test_student_1769283168721",
+    "conversation_id": null,
+    "query": "Query 1",
+    "response": "Response 1",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.771484",
+    "student_id": "test_student_1769283168721",
+    "conversation_id": null,
+    "query": "Query 2",
+    "response": "Response 2",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.804617",
+    "student_id": "test_student_1769283168721",
+    "conversation_id": null,
+    "query": "Query 3",
+    "response": "Response 3",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.835196",
+    "student_id": "test_student_1769283168721",
+    "conversation_id": null,
+    "query": "Query 4",
+    "response": "Response 4",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.899144",
+    "student_id": "test_student_1769283168898",
+    "conversation_id": null,
+    "query": "Question 0",
+    "response": "Answer 0",
+    "decision": "allow",
+    "metadata": {
+      "concepts": [
+        "concept_0"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.920410",
+    "student_id": "test_student_1769283168898",
+    "conversation_id": null,
+    "query": "Question 1",
+    "response": "Answer 1",
+    "decision": "allow",
+    "metadata": {
+      "concepts": [
+        "concept_1"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:48.947698",
+    "student_id": "test_student_1769283168898",
+    "conversation_id": null,
+    "query": "Question 2",
+    "response": "Answer 2",
+    "decision": "allow",
+    "metadata": {
+      "concepts": [
+        "concept_2"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:32:49.049735",
+    "student_id": "test_student_1769283169048",
+    "conversation_id": null,
+    "query": "Urgent help needed for exam tomorrow",
+    "response": "Flagged for review",
+    "decision": "flag",
+    "metadata": {
+      "requires_human_review": true
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:33:27.125250",
+    "student_id": "test",
+    "conversation_id": "11839e60-f84a-40be-9145-3899dda5d4a8",
+    "query": "Solve my homework",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "solve\\s+(this|my|the)\\s+(homework|assignment|problem)"
+    }
+  },
+  {
+    "timestamp": "2026-01-25T00:33:31.492826",
+    "student_id": "test",
+    "conversation_id": "ed24fe50-f1a7-4455-ae74-cb9b59461551",
+    "query": "Can you explain sorting?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  }
+]
