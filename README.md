@@ -15,6 +15,8 @@
 
 ## Architecture
 
+> See [ARCHITECTURE.md](./ARCHITECTURE.md) for detailed diagrams: request flows, Kubernetes deployment map, event pipeline, Dapr abstraction, Discord bot flow, CI/CD pipeline, and resource allocation.
+
 ```mermaid
 graph TD
     A["Discord Bot<br/>(TodoMaster AI)"] -->|REST API| B["FastAPI Backend<br/>(+ Dapr Sidecar)"]
