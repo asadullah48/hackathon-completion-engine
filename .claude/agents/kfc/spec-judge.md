@@ -77,24 +77,13 @@ eg:
 
 ### Evaluation Process
 
-```python
-def evaluate_documents(documents):
-    scores = []
-    for doc in documents:
-        score = {
-            'doc_id': doc.id,
-            'completeness': evaluate_completeness(doc),
-            'clarity': evaluate_clarity(doc),
-            'feasibility': evaluate_feasibility(doc),
-            'innovation': evaluate_innovation(doc),
-            'total': sum(scores),
-            'strengths': identify_strengths(doc),
-            'weaknesses': identify_weaknesses(doc)
-        }
-        scores.append(score)
-    
-    return select_best_or_combine(scores)
-```
+For each candidate document:
+
+1. Score it on the four criteria (Completeness, Clarity, Feasibility, Innovation) out of 25 points each
+2. Identify key strengths and weaknesses
+3. Calculate total score (out of 100)
+
+After scoring all candidates, either select the highest-scoring document or combine strengths from multiple versions into a final document.
 
 ## PROCESS
 
