@@ -271,6 +271,29 @@ No code exists without a specification first. Each hackathon follows:
 
 ---
 
+## Hackathon Submission
+
+| Deliverable | Link / Status |
+|-------------|---------------|
+| **Submission Form** | [Google Form](https://forms.gle/JR9T1SJq5rmQyGkGA) |
+| **GitHub Repository** | [asadullah48/hackathon-completion-engine](https://github.com/asadullah48/hackathon-completion-engine) |
+| **Demo Video** | _TODO: Add YouTube/Loom link_ |
+| **Tier Declaration** | Platinum (H0-H4) + Extended (H4.5 Discord Bot) |
+| **Architecture** | [ARCHITECTURE.md](./ARCHITECTURE.md) |
+| **Security** | Credentials managed via K8s Secrets (`kubectl create secret`); no keys in source code |
+
+### Judging Criteria Alignment
+
+| Criteria | Weight | How This Project Addresses It |
+|----------|--------|-------------------------------|
+| **Functionality** | 30% | Full CRUD + AI chat + Constitutional AI + Discord bot + Event-driven pipeline |
+| **Innovation** | 25% | Constitutional AI safety layer, Dapr zero-code infra swap, tree-based spec evaluation |
+| **Practicality** | 20% | Production-grade K8s deployment (14 services in 6GB), CI/CD pipeline |
+| **Security** | 15% | K8s Secrets, Constitutional AI blocking, HITL approval workflow, Trivy scanning |
+| **Documentation** | 10% | README, ARCHITECTURE.md (9 Mermaid diagrams), per-session docs, spec-driven methodology |
+
+---
+
 ## Author
 
 **Asadullah Shafique**
@@ -282,7 +305,7 @@ No code exists without a specification first. Each hackathon follows:
 
 ## License
 
-MIT License - See LICENSE file for details
+MIT License - See [LICENSE](./LICENSE) file for details
 
 ---
 
