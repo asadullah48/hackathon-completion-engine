@@ -271,22 +271,37 @@ vault/
 
 ---
 
-## Deployment
+## Live Deployment
 
-### Render (Backend)
+| Service | URL |
+|---------|-----|
+| **Backend API (Render)** | [https://personal-ai-employee-backend.onrender.com](https://personal-ai-employee-backend.onrender.com) |
+| **Frontend (Vercel)** | [https://frontend-three-kappa-64.vercel.app](https://frontend-three-kappa-64.vercel.app) |
 
-The project includes a `render.yaml` Blueprint for one-click deployment:
-
-1. Push to GitHub
-2. Connect repo to Render
-3. Render auto-detects `render.yaml` and deploys
-4. Set `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` in Render environment variables
-
-### Vercel (Frontend)
+### Quick Verify
 
 ```bash
+# Health check (dual AI engines)
+curl https://personal-ai-employee-backend.onrender.com/health
+
+# Vault status (real-time folder counts)
+curl https://personal-ai-employee-backend.onrender.com/api/vault/status
+
+# Service info
+curl https://personal-ai-employee-backend.onrender.com/
+```
+
+### Deploy from Source
+
+**Render (Backend)**:
+1. Push to GitHub
+2. Connect repo to Render → auto-detects `render.yaml`
+3. Set `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` as env vars
+
+**Vercel (Frontend)**:
+```bash
 cd frontend
-vercel --prod
+vercel --prod -e NEXT_PUBLIC_API_URL=https://personal-ai-employee-backend.onrender.com
 ```
 
 ---
@@ -325,6 +340,8 @@ vercel --prod
 | Deliverable | Link / Status |
 |-------------|---------------|
 | **GitHub Repository** | [asadullah48/hackathon-completion-engine](https://github.com/asadullah48/hackathon-completion-engine) |
+| **Live Backend** | [personal-ai-employee-backend.onrender.com](https://personal-ai-employee-backend.onrender.com) |
+| **Live Frontend** | [frontend-three-kappa-64.vercel.app](https://frontend-three-kappa-64.vercel.app) |
 | **Demo Video** | _TODO: Add YouTube/Loom link_ |
 | **Tier Declaration** | Gold |
 | **Architecture** | See diagram above |
