@@ -1,0 +1,39 @@
+{
+  "webhooks": {
+    "commits": {
+      "url": "YOUR_COMMITS_WEBHOOK_URL",
+      "channel_name": "github-commits",
+      "events": ["push"],
+      "description": "Webhook for commit notifications - create in Discord channel settings -> Integrations -> Webhooks"
+    },
+    "issues": {
+      "url": "YOUR_ISSUES_WEBHOOK_URL",
+      "channel_name": "github-issues",
+      "events": ["issues", "issue_comment"],
+      "description": "Webhook for issue notifications - create in Discord channel settings -> Integrations -> Webhooks"
+    },
+    "discussions": {
+      "url": "YOUR_DISCUSSIONS_WEBHOOK_URL",
+      "channel_name": "github-discussions",
+      "events": ["discussion", "discussion_comment"],
+      "description": "Webhook for discussion notifications - create in Discord channel settings -> Integrations -> Webhooks"
+    },
+    "pull_requests": {
+      "url": "YOUR_PR_WEBHOOK_URL",
+      "channel_name": "github-pull-requests",
+      "events": ["pull_request", "pull_request_review", "pull_request_review_comment"],
+      "description": "Webhook for pull request notifications - create in Discord channel settings -> Integrations -> Webhooks"
+    }
+  },
+  "bot_token": "YOUR_BOT_TOKEN",
+  "guild_id": "YOUR_GUILD_ID",
+  "channels": {
+    "activity_log": "github-activity-log",
+    "feedback": "github-feedback"
+  },
+  "instructions": {
+    "webhooks_setup": "To set up webhooks: 1) Go to your Discord server 2) Select a channel 3) Go to channel settings 4) Go to Integrations 5) Click Webhooks 6) Click 'Create Webhook' 7) Copy the webhook URL and paste it in the corresponding field above",
+    "bot_setup": "To set up the bot: 1) Go to https://discord.com/developers/applications 2) Create a new application 3) Add a bot to the application 4) Copy the token and paste it in the 'bot_token' field above 5) Invite the bot to your server using OAuth2 URL with appropriate permissions",
+    "github_setup": "To connect GitHub: 1) Go to your GitHub repository settings 2) Click on 'Webhooks' 3) Click 'Add webhook' 4) Enter the URL of your deployed webhook server (e.g., https://yourdomain.com/github-webhook) 5) Set the content type to application/json 6) Add a secret if desired 7) Select the events you want to trigger the webhook"
+  }
+}

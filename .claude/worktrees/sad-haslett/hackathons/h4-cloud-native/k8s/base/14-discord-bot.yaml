@@ -1,0 +1,57 @@
+# Secret 'discord-bot-secret' is managed via kubectl create secret (not in git)
+# kubectl create secret generic discord-bot-secret \
+#   --from-literal=DISCORD_BOT_TOKEN='<your-token>' -n todo-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discord-bot
+  namespace: todo-app
+  labels:
+    app: discord-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: discord-bot
+  template:
+    metadata:
+      labels:
+        app: discord-bot
+        version: v1.0.0
+    spec:
+      initContainers:
+      - name: wait-for-backend
+        image: busybox:1.36
+        command:
+        - sh
+        - -c
+        - |
+          echo "Waiting for backend to be ready..."
+          until nc -z todo-app-backend 8000; do
+            echo "Backend not ready, waiting..."
+            sleep 2
+          done
+          echo "Backend is ready!"
+      containers:
+      - name: discord-bot
+        image: todo-discord-bot:v1.0.0
+        imagePullPolicy: Never
+        env:
+        - name: BACKEND_URL
+          value: "http://todo-app-backend:8000"
+        - name: BOT_STATUS
+          value: "Managing todos"
+        - name: DISCORD_BOT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: discord-bot-secret
+              key: DISCORD_BOT_TOKEN
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+      restartPolicy: Always

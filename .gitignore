@@ -62,6 +62,8 @@ Thumbs.db
 *.key
 secrets/
 credentials.json
+token.json
+.whatsapp_session/
 
 # Deployment tokens
 .railway/

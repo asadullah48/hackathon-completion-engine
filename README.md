@@ -1,70 +1,179 @@
-# Hackathon Completion Engine
+# Personal AI Employee
 
-**Cloud-Native AI-Powered Todo System with Constitutional AI Safety**
+**Hackathon 0: Building Autonomous FTEs (Full-Time Equivalents)**
 
-> A progressive hackathon series (H0-H4.5) building a production-grade, Kubernetes-orchestrated application with event-driven microservices, Constitutional AI filtering, and a Discord bot interface.
+> Your life and business on autopilot. Local-first, agent-driven, human-in-the-loop.
 
-[![H4 Status](https://img.shields.io/badge/H4-platinum%20tier%20complete-blue)]()
-[![H4.5 Status](https://img.shields.io/badge/H4.5-discord%20bot%20complete-purple)]()
-[![Tests](https://img.shields.io/badge/tests-180%2B%20passing-brightgreen)]()
-[![K8s Services](https://img.shields.io/badge/k8s%20services-14-orange)]()
+A Digital Full-Time Employee (FTE) powered by Claude Code and Obsidian that proactively manages personal and business affairs 24/7. File watchers detect new items, Claude Code reasons about them, and the HITL approval workflow keeps the human in control of sensitive actions.
+
+[![Tier](https://img.shields.io/badge/tier-bronze-cd7f32)]()
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue)]()
-[![TypeScript](https://img.shields.io/badge/typescript-next.js%2014-black)]()
+[![TypeScript](https://img.shields.io/badge/typescript-next.js%2016-black)]()
+[![Claude Code](https://img.shields.io/badge/engine-claude%20code-orange)]()
 
 ---
 
 ## Architecture
 
-> See [ARCHITECTURE.md](./ARCHITECTURE.md) for detailed diagrams: request flows, Kubernetes deployment map, event pipeline, Dapr abstraction, Discord bot flow, CI/CD pipeline, and resource allocation.
-
-```mermaid
-graph TD
-    A["Discord Bot<br/>(TodoMaster AI)"] -->|REST API| B["FastAPI Backend<br/>(+ Dapr Sidecar)"]
-    C["Next.js Frontend"] -->|REST API| B
-    B -->|SQL| D["PostgreSQL 15<br/>(StatefulSet)"]
-    B -->|Dapr Pub/Sub| E["Apache Kafka<br/>(Strimzi KRaft v4.0.0)"]
-    E --> F["Notification Service"]
-    G["Prometheus"] -->|Scrape Metrics| B
-    G -->|Scrape Metrics| F
-    B -->|State Store| H["Redis 7"]
-    I["Constitutional AI<br/>Middleware"] -->|Block / Flag / Allow| B
-
-    style I fill:#ff6b6b,color:#fff
-    style E fill:#231f20,color:#fff
-    style G fill:#e6522c,color:#fff
-    style A fill:#5865F2,color:#fff
+```
+EXTERNAL SOURCES                    PERCEPTION LAYER
+  Files dropped in                    File Watcher (Python)
+  /mnt/d/AI-Employee-Inbox   --->    monitors every 10s
+                                            |
+                                            v
+                              OBSIDIAN VAULT (Local Markdown)
+                              +-------------------------------+
+                              | /Inbox       /Needs_Action    |
+                              | /Pending_Approval  /Approved  |
+                              | /Rejected    /Done            |
+                              | /Briefings   /Logs            |
+                              | Dashboard.md                  |
+                              | Company_Handbook.md           |
+                              | Business_Goals.md             |
+                              +-------------------------------+
+                                            |
+                                            v
+                              REASONING LAYER (Claude Code)
+                              Read -> Think -> Plan -> Act
+                              Follows Company_Handbook rules
+                                            |
+                              +-------------+-------------+
+                              |                           |
+                              v                           v
+                        AUTO-EXECUTE              HITL APPROVAL
+                        (Low risk)            (Sensitive actions)
+                        Update dashboard      Create approval file
+                        Categorize files      Wait for human decision
+                        Log activities        Execute after approval
+                                            |
+                                            v
+                              ACTION LAYER (MCP + Backend)
+                              FastAPI backend (port 8000)
+                              CEO Briefing generator
+                              Orchestrator coordination
 ```
 
-### Constitutional AI Decision Flow
+### Perception -> Reasoning -> Action Flow
 
-```mermaid
-graph LR
-    Q[User Query] --> F{Constitutional Filter}
-    F -->|"Matches block pattern<br/>(e.g. 'solve my homework')"| B["BLOCK<br/>Socratic Response"]
-    F -->|"Matches flag pattern<br/>(e.g. 'exam tomorrow')"| FL["FLAG<br/>Human Review"]
-    F -->|Passes all checks| A["ALLOW<br/>AI Response"]
-    B --> K[Publish to Kafka]
-    FL --> K
-    A --> K
-    FL --> V["Vault<br/>Pending Approval"]
+1. **Perception**: File Watcher detects new files in the drop folder
+2. **Reasoning**: Claude Code reads vault, applies Company_Handbook rules, creates plans
+3. **Action**: Auto-execute low-risk tasks, HITL-approve sensitive ones, update dashboard
+
+---
+
+## Quick Start
+
+### Prerequisites
+
+- Python 3.11+
+- Node.js 18+ (for frontend)
+- Claude Code CLI (for full orchestration)
+
+### Setup
+
+```bash
+# Clone and enter project
+git clone https://github.com/asadullah48/hackathon-completion-engine.git
+cd hackathon-completion-engine
+
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Configure environment
+cp .env.example .env
+# Edit .env with your API keys
+
+# Create the drop folder (file watcher monitors this)
+mkdir -p /mnt/d/AI-Employee-Inbox
+```
+
+### Run the File Watcher
+
+```bash
+python watchers/file_watcher.py --vault ./vault
+```
+
+Drop a test file and watch it get processed:
+```bash
+echo "Test invoice from Client A" > /mnt/d/AI-Employee-Inbox/invoice.txt
+# Check vault/Needs_Action/ -- a new action item appears
+```
+
+### Run the Orchestrator (Full Mode)
+
+```bash
+# Full orchestration (file watcher + Claude Code + scheduling)
+python orchestrator.py
+
+# Preview mode (no actual actions)
+python orchestrator.py --dry-run
+
+# Without Claude Code CLI
+python orchestrator.py --no-claude
+```
+
+### Run the Backend API
+
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8000
+# Visit http://localhost:8000/health
+```
+
+### Run the Frontend
+
+```bash
+cd frontend
+npm install && npm run dev
+# Visit http://localhost:3000
 ```
 
 ---
 
-## Hackathon Progression
+## Key Features
 
-Each hackathon built on the previous one, progressively adding complexity:
+### 1. File System Watcher
+Monitors `/mnt/d/AI-Employee-Inbox` every 10 seconds. Categorizes files (document, code, data, image, video, archive) and creates structured action items in the vault.
 
-| Hackathon | Project | What I Built | Tier | Tests |
-|-----------|---------|-------------|------|-------|
-| **H0** | Personal AI CTO | File watcher, auto-categorization, HITL approvals | Bronze | 7/7 |
-| **H1** | Course Companion | FastAPI backend, Constitutional AI filter, conversation tracking | Silver | -- |
-| **H2** | AI-Powered Todo | Spec-driven development, AI spec generation, CRUD with constitution | Silver | -- |
-| **H3** | Advanced Todo | Event-driven architecture, Kafka, Dapr, team collaboration, recurring todos | Gold | 149/149 |
-| **H4** | Cloud-Native | Full Kubernetes cluster (14 manifests), CI/CD, Prometheus monitoring | Platinum | -- |
-| **H4.5** | Discord Bot | TodoMaster AI with 6 slash commands, K8s deployment | Extended | 31/31 |
+### 2. Human-in-the-Loop (HITL) Workflow
+Sensitive actions create approval files in `vault/Pending_Approval/`. Move files to `vault/Approved/` or `vault/Rejected/` to make decisions. The AI never acts on sensitive matters without human approval.
 
-**Overall: 100% Complete (5/5 hackathons + extended Discord bot)**
+### 3. Claude Code as the Brain
+CLAUDE.md at the project root tells Claude Code how to operate as the AI Employee. It reads the vault, follows Company_Handbook rules, processes items, and updates the dashboard.
+
+### 4. Agent Skills
+Four specialized Claude Code agent skills in `.claude/agents/fte/`:
+- **dashboard-updater** -- Scans vault folders, updates Dashboard.md metrics
+- **hitl-approval-manager** -- Creates/processes approval requests
+- **ceo-briefing-generator** -- Weekly executive briefings from logs and metrics
+- **file-processor** -- Categorizes and triages Inbox items
+
+### 5. CEO Briefing
+Automated weekly briefing generated every Monday at 9 AM, summarizing completed tasks, bottlenecks, financial metrics, and proactive suggestions.
+
+### 6. Constitutional AI
+Backend middleware enforces safety rules. Blocked queries get Socratic responses. Flagged queries enter HITL review.
+
+---
+
+## Vault Structure
+
+```
+vault/
+  Dashboard.md           # Real-time business snapshot
+  Company_Handbook.md    # Rules of engagement
+  Business_Goals.md      # Strategic objectives and KPIs
+  Inbox/                 # New items to triage
+  Needs_Action/          # Items requiring processing
+  Pending_Approval/      # HITL: awaiting human decision
+  Approved/              # Human-approved actions
+  Rejected/              # Human-rejected actions
+  Done/                  # Completed items
+  Briefings/             # CEO briefing output
+  Logs/                  # Daily JSON activity logs
+  Conversation_Logs/     # Chat history
+```
 
 ---
 
@@ -72,202 +181,45 @@ Each hackathon built on the previous one, progressively adding complexity:
 
 | Layer | Technology |
 |-------|-----------|
-| **Orchestration** | Kubernetes (Minikube v1.35.0) |
-| **Service Mesh** | Dapr (sidecar injection) |
-| **Event Streaming** | Apache Kafka (Strimzi KRaft v4.0.0 -- no ZooKeeper) |
+| **Brain** | Claude Code (reasoning engine) |
+| **Memory/GUI** | Obsidian vault (local Markdown) |
+| **Perception** | Python file watcher (watchers/) |
 | **Backend** | Python FastAPI + Uvicorn |
-| **Frontend** | Next.js 14 + TypeScript + Tailwind CSS |
-| **Database** | PostgreSQL 15 (StatefulSet + PVC) |
-| **Cache** | Redis 7 |
-| **Monitoring** | Prometheus (4 scrape targets, custom metrics) |
-| **AI** | OpenAI API + Constitutional AI middleware |
-| **Bot** | discord.py with slash commands |
-| **CI/CD** | GitHub Actions (test, build, validate, security scan) |
-| **Containers** | Docker (multi-stage builds) |
+| **Frontend** | Next.js 16 + TypeScript + Tailwind CSS |
+| **AI Chat** | OpenAI API + Constitutional AI middleware |
+| **Orchestration** | Python orchestrator with schedule library |
+| **Deployment** | Render (backend + frontend) |
 
 ---
 
-## Key Technical Highlights
+## Deployment
 
-### 1. Constitutional AI Safety
-Every user query passes through middleware that enforces academic integrity. Blocked queries receive Socratic responses instead of direct answers. Flagged queries go to a vault-based Human-in-the-Loop (HITL) approval workflow.
+### Render
 
-### 2. Zero-Code Infrastructure Swap
-Dapr's abstraction layer let me switch pub/sub from Redis to Apache Kafka by changing **1 YAML file** -- zero application code changes. This proves the architecture is truly infrastructure-agnostic.
+The project includes a `render.yaml` Blueprint for one-click deployment:
 
-### 3. 14 Kubernetes Services in 6GB
-Full production stack (Kafka + Dapr + Prometheus + PostgreSQL + 4 microservices) deployed in a resource-constrained Minikube cluster at only **44% memory utilization**.
+1. Push to GitHub
+2. Connect repo to Render
+3. Render auto-detects `render.yaml` and deploys both services
+4. Set `OPENAI_API_KEY` in Render environment variables
 
-### 4. Event-Driven Audit Trail
-Every interaction publishes events (`chat_completed`, `chat_blocked`, `chat_flagged`, `todo_created`, `todo_completed`) to Kafka topics with 24-hour retention -- full accountability.
-
-### 5. Discord as Alternative Frontend
-The Discord bot connects to the same Kubernetes backend, proving the API-first architecture works across interfaces while maintaining Constitutional AI compliance.
+**Backend**: `https://personal-ai-employee-backend.onrender.com`
+**Frontend**: `https://personal-ai-employee-frontend.onrender.com`
 
 ---
 
-## Quick Start
+## Background: Hackathon Progression
 
-### Option A: Full Kubernetes Deployment
+This project evolved through 5 progressive hackathons:
 
-**Prerequisites:** Docker, Minikube, kubectl, Dapr CLI
-
-```bash
-# Start cluster
-minikube start --memory=6144 --cpus=4 --driver=docker
-
-# Deploy infrastructure
-kubectl apply -f hackathons/h4-cloud-native/k8s/base/00-namespace.yaml
-kubectl apply -f hackathons/h4-cloud-native/k8s/base/01-configmap.yaml
-kubectl create secret generic todo-secrets -n todo-app \
-  --from-literal=OPENAI_API_KEY=your-key
-kubectl apply -f hackathons/h4-cloud-native/k8s/base/03-postgresql.yaml
-
-# Install Dapr
-dapr init -k
-kubectl apply -f hackathons/h4-cloud-native/k8s/base/07-dapr-statestore.yaml
-
-# Deploy Kafka (Strimzi)
-kubectl create namespace kafka
-kubectl apply -f 'https://strimzi.io/install/latest?namespace=kafka' -n kafka
-kubectl apply -f hackathons/h4-cloud-native/k8s/base/09-kafka.yaml
-kubectl apply -f hackathons/h4-cloud-native/k8s/base/10-kafka-topics.yaml
-kubectl apply -f hackathons/h4-cloud-native/k8s/base/11-dapr-pubsub-kafka.yaml
-
-# Deploy applications
-kubectl apply -f hackathons/h4-cloud-native/k8s/base/04-backend.yaml
-kubectl apply -f hackathons/h4-cloud-native/k8s/base/05-frontend.yaml
-kubectl apply -f hackathons/h4-cloud-native/k8s/base/12-notification-service.yaml
-kubectl apply -f hackathons/h4-cloud-native/k8s/base/13-prometheus.yaml
-kubectl apply -f hackathons/h4-cloud-native/k8s/base/14-discord-bot.yaml
-
-# Verify all pods running
-kubectl get pods -n todo-app
-kubectl get pods -n kafka
-
-# Access the app
-minikube service todo-app-frontend -n todo-app
-```
-
-### Option B: Local Development
-
-```bash
-# Backend
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload --port 8000
-
-# Frontend (separate terminal)
-cd frontend
-npm install && npm run dev
-```
-
----
-
-## Kubernetes Services
-
-14 manifests deploying the following resources in `todo-app` and `kafka` namespaces:
-
-| Manifest | Resource | Purpose |
-|----------|----------|---------|
-| `00-namespace` | Namespace | `todo-app` + `kafka` namespaces |
-| `01-configmap` | ConfigMap | Database URLs, API config, env vars |
-| `02-secret` | Secret | API keys (created via kubectl) |
-| `03-postgresql` | StatefulSet + PVC | Persistent database (5Gi) |
-| `04-backend` | Deployment + Service | FastAPI (2 replicas, Dapr sidecar) |
-| `05-frontend` | Deployment + Service | Next.js (2 replicas) |
-| `06-redis` | Deployment + PVC | Cache and state store |
-| `07-dapr-statestore` | Dapr Component | Redis state management |
-| `08-dapr-pubsub` | Dapr Component | Redis pub/sub (legacy) |
-| `09-kafka` | Strimzi KRaft | Kafka broker (no ZooKeeper) |
-| `10-kafka-topics` | KafkaTopic | 3 topics: todo-events, user-events, system-events |
-| `11-dapr-pubsub-kafka` | Dapr Component | Kafka pub/sub (active) |
-| `12-notification` | Deployment + Service | Kafka event consumer |
-| `13-prometheus` | Deployment + RBAC | Monitoring (4 scrape targets) |
-| `14-discord-bot` | Deployment | TodoMaster AI Discord bot |
-
----
-
-## Discord Bot -- TodoMaster AI
-
-6 slash commands connecting Discord to the Kubernetes backend:
-
-| Command | Description |
-|---------|-------------|
-| `/todo-create` | Create a todo (title, priority, category, deadline) |
-| `/todo-list` | List todos with filtering (all, active, completed) |
-| `/todo-show` | Show todo details (supports ID prefix matching) |
-| `/todo-complete` | Mark a todo as completed |
-| `/todo-delete` | Delete a todo |
-| `/help` | Show bot commands and info |
-
----
-
-## CI/CD Pipeline
-
-GitHub Actions workflow triggered on push to `main`:
-
-```
-Test (pytest + ruff) --> Build (3 Docker images) --> Validate (K8s manifests) --> Security (Trivy scan)
-```
-
----
-
-## Project Structure
-
-```
-hackathon-completion-engine/
-├── .github/workflows/         # CI/CD pipelines
-├── backend/                   # FastAPI backend
-│   ├── main.py                # App entry + Dapr init
-│   ├── middleware/             # Constitutional AI filter
-│   ├── routers/               # API endpoints (chat, progress)
-│   └── services/              # ChatGPT, Dapr, Logger services
-├── frontend/                  # Next.js frontend
-├── hackathons/
-│   ├── h0-personal-ai-cto/    # Bronze: File watcher + HITL
-│   ├── h1-course-companion/   # Silver: Constitutional AI
-│   ├── h2-todo-spec-driven/   # Silver: Spec-driven dev
-│   ├── h3-advanced-todo/      # Gold: Event-driven (149 tests)
-│   └── h4-cloud-native/       # Platinum: Kubernetes
-│       ├── k8s/base/          # 14 K8s manifests
-│       ├── docker/            # 4 multi-stage Dockerfiles
-│       ├── services/
-│       │   └── discord-bot/   # H4.5: Discord bot (31 tests)
-│       ├── helm/              # Helm chart
-│       ├── scripts/           # Deploy, build, verify scripts
-│       └── docs/              # Session documentation
-├── vault/                     # Obsidian-compatible knowledge base
-│   ├── Conversation_Logs/     # JSONL chat history
-│   └── Pending_Approval/      # HITL approval queue
-├── engine/                    # Universal execution framework
-├── skills-library/            # 39+ reusable agent skills
-└── specs/                     # Specification documents
-```
-
----
-
-## Methodology
-
-### Spec-Driven Development
-No code exists without a specification first. Each hackathon follows:
-
-1. **Specification** -- Detailed requirements document
-2. **Planning** -- 4 sessions (Foundation, Implementation, Integration, Validation)
-3. **Execution** -- Claude Code assisted implementation
-4. **Testing** -- Comprehensive test suites
-5. **Documentation** -- README + completion report
-
-### Architectural Patterns
-
-| Pattern | Implementation |
-|---------|---------------|
-| **Constitutional AI** | Regex-based middleware with block/flag/allow decisions |
-| **Event-Driven** | Dapr pub/sub over Kafka with 5 event types |
-| **HITL Workflow** | Vault-based folder workflow (Pending --> Approved/Rejected) |
-| **Zero-Backend-LLM** | Frontend is thin client; all AI logic in backend |
-| **API-First** | Same backend serves web frontend + Discord bot |
-| **Infrastructure-Agnostic** | Dapr abstracts message broker (Redis <--> Kafka swap) |
+| Hackathon | Project | What Was Built | Tier |
+|-----------|---------|---------------|------|
+| **H0** | Personal AI Employee | File watcher, HITL workflow, vault, agent skills | Bronze |
+| **H1** | Course Companion | FastAPI backend, Constitutional AI filter | Silver |
+| **H2** | AI-Powered Todo | Spec-driven development, CRUD with constitution | Silver |
+| **H3** | Advanced Todo | Event-driven (Kafka, Dapr), team collaboration | Gold |
+| **H4** | Cloud-Native | Full Kubernetes cluster (14 manifests), CI/CD | Platinum |
+| **H4.5** | Discord Bot | TodoMaster AI with 6 slash commands | Extended |
 
 ---
 
@@ -278,19 +230,19 @@ No code exists without a specification first. Each hackathon follows:
 | **Submission Form** | [Google Form](https://forms.gle/JR9T1SJq5rmQyGkGA) |
 | **GitHub Repository** | [asadullah48/hackathon-completion-engine](https://github.com/asadullah48/hackathon-completion-engine) |
 | **Demo Video** | _TODO: Add YouTube/Loom link_ |
-| **Tier Declaration** | Platinum (H0-H4) + Extended (H4.5 Discord Bot) |
+| **Tier Declaration** | Bronze |
 | **Architecture** | [ARCHITECTURE.md](./ARCHITECTURE.md) |
-| **Security** | Credentials managed via K8s Secrets (`kubectl create secret`); no keys in source code |
+| **Security** | Credentials in `.env` (gitignored); K8s Secrets for cloud; HITL for sensitive actions |
 
 ### Judging Criteria Alignment
 
 | Criteria | Weight | How This Project Addresses It |
 |----------|--------|-------------------------------|
-| **Functionality** | 30% | Full CRUD + AI chat + Constitutional AI + Discord bot + Event-driven pipeline |
-| **Innovation** | 25% | Constitutional AI safety layer, Dapr zero-code infra swap, tree-based spec evaluation |
-| **Practicality** | 20% | Production-grade K8s deployment (14 services in 6GB), CI/CD pipeline |
-| **Security** | 15% | K8s Secrets, Constitutional AI blocking, HITL approval workflow, Trivy scanning |
-| **Documentation** | 10% | README, ARCHITECTURE.md (9 Mermaid diagrams), per-session docs, spec-driven methodology |
+| **Functionality** | 30% | File watcher + HITL workflow + vault dashboard + CEO briefing + agent skills + orchestrator |
+| **Innovation** | 25% | Claude Code as autonomous FTE brain, vault-based HITL, agent skill architecture |
+| **Practicality** | 20% | Actually usable for daily file triage, Render deployment for cloud access |
+| **Security** | 15% | HITL approval workflow, .env credentials, constitutional AI filtering, audit logging |
+| **Documentation** | 10% | README, CLAUDE.md, ARCHITECTURE.md, Company_Handbook, agent skill docs |
 
 ---
 
@@ -309,5 +261,4 @@ MIT License - See [LICENSE](./LICENSE) file for details
 
 ---
 
-**Built with systematic hackathon methodology -- Bronze to Platinum in 5 progressive iterations**
-**January - February 2026 | Panaversity Hackathon Series**
+**Built as an Autonomous Digital FTE -- Your life and business on autopilot.**

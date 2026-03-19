@@ -1,0 +1,58 @@
+[project]
+name = "hackathon-completion-engine"
+version = "1.0.0"
+description = "Universal framework for completing Panaversity hackathons using spec-driven development"
+authors = [
+    {name = "Asadullah", email = "asadullah@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+keywords = ["hackathon", "spec-driven", "automation", "claude"]
+
+dependencies = [
+    "pydantic>=2.5.0",
+    "jinja2>=3.1.2",
+    "python-dotenv>=1.0.0",
+    "requests>=2.31.0",
+    "pyyaml>=6.0.1",
+    "click>=8.1.7",
+    "rich>=13.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.3",
+    "mypy>=1.7.1",
+    "pylint>=3.0.3",
+    "black>=23.12.0",
+]
+
+[project.scripts]
+hce-spec = "engine.spec_generator.generator:cli"
+hce-map = "engine.skill_mapper.mapper:cli"
+hce-template = "engine.template_system.generator:cli"
+hce-deploy = "engine.deployment_automator.deployer:cli"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pylint.messages_control]
+disable = ["C0114", "C0115", "C0116"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"

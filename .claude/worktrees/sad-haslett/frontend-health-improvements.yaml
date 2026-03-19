@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-app-frontend
+  namespace: todo-app
+spec:
+  template:
+    spec:
+      containers:
+      - name: frontend
+        # Improve health check settings for frontend
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 45  # Increased from 30
+          periodSeconds: 15        # Increased from 10
+          timeoutSeconds: 5        # Increased from 1
+          failureThreshold: 5      # Increased from 3
+          successThreshold: 1
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 20  # Increased from 10
+          periodSeconds: 10        # Increased from 5
+          timeoutSeconds: 3        # Increased from 1
+          failureThreshold: 5      # Increased from 3
+          successThreshold: 1
+        # Slightly increase resource limits to handle load spikes
+        resources:
+          limits:
+            cpu: 500m          # Increased from 300m
+            memory: 768Mi      # Increased from 512Mi
+          requests:
+            cpu: 150m          # Increased from 100m
+            memory: 384Mi      # Increased from 256Mi
+---
+# Add a PodDisruptionBudget to ensure availability during maintenance
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: frontend-pdb
+  namespace: todo-app
+spec:
+  minAvailable: 1  # Ensure at least 1 frontend pod remains available
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: frontend
+      app.kubernetes.io/instance: todo-app
+      app.kubernetes.io/name: todo-app

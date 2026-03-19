@@ -56,7 +56,14 @@ dapr_service = get_dapr_service()
 
 @app.on_event('startup')
 async def startup_event():
-    """Initialize Dapr service on application startup"""
+    """Initialize services on application startup"""
+    # Ensure vault directories exist (needed for Render/cloud where filesystem starts empty)
+    vault_path = os.getenv("VAULT_PATH", "../vault")
+    for subdir in ["Inbox", "Needs_Action", "Pending_Approval", "Approved",
+                    "Rejected", "Done", "Briefings", "Logs", "Conversation_Logs"]:
+        os.makedirs(os.path.join(vault_path, subdir), exist_ok=True)
+    logger.info(f"Vault directories ensured at: {vault_path}")
+
     try:
         dapr_service.initialize()
         logger.info("Dapr service initialized successfully")

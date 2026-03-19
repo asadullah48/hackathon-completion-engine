@@ -1,0 +1,40 @@
+services:
+  # Backend API (FastAPI)
+  - type: web
+    name: personal-ai-employee-backend
+    runtime: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-3.5-turbo
+      - key: MAX_TOKENS
+        value: "500"
+      - key: TEMPERATURE
+        value: "0.7"
+      - key: VAULT_PATH
+        value: ../vault
+      - key: MAX_REQUESTS_PER_MINUTE
+        value: "10"
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+    healthCheckPath: /health
+
+  # Frontend (Next.js)
+  - type: web
+    name: personal-ai-employee-frontend
+    runtime: node
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    startCommand: cd frontend && npm start
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          name: personal-ai-employee-backend
+          type: web
+          property: host
+      - key: NODE_VERSION
+        value: "18.19.0"

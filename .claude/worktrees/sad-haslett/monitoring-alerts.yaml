@@ -1,0 +1,51 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: todo-app-monitor
+  namespace: todo-app
+  labels:
+    app: todo-app
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: todo-app
+  endpoints:
+  - port: http
+    interval: 30s
+    path: /metrics
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: todo-app-alerts
+  namespace: todo-app
+spec:
+  groups:
+  - name: todo-app.rules
+    rules:
+    - alert: HighPodRestarts
+      expr: increase(kube_pod_container_status_restarts_total{namespace="todo-app"}[15m]) > 5
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High number of pod restarts in todo-app namespace"
+        description: "More than 5 pod restarts in 15 minutes detected in {{ $labels.pod }}"
+
+    - alert: PodNotReady
+      expr: kube_pod_status_ready{namespace="todo-app",condition="false"} == 1
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Pod in todo-app namespace is not ready"
+        description: "{{ $labels.pod }} in namespace {{ $labels.namespace }} has been not ready for more than 5 minutes"
+
+    - alert: HighCPUUsage
+      expr: 100 * (kube_pod_container_resource_requests{resource="cpu",unit="core",namespace="todo-app"} - node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate{}) / kube_pod_container_resource_requests{resource="cpu",unit="core",namespace="todo-app"} > 80
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High CPU usage in todo-app namespace"
+        description: "CPU usage is above 80% for {{ $labels.pod }}"
