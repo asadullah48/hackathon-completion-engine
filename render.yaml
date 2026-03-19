@@ -9,8 +9,12 @@ services:
     envVars:
       - key: OPENAI_API_KEY
         sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
       - key: OPENAI_MODEL
         value: gpt-3.5-turbo
+      - key: CLAUDE_MODEL
+        value: claude-sonnet-4-5-20250929
       - key: MAX_TOKENS
         value: "500"
       - key: TEMPERATURE

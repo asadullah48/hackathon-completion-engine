@@ -4,21 +4,29 @@
 
 > Your life and business on autopilot. Local-first, agent-driven, human-in-the-loop.
 
-A Digital Full-Time Employee (FTE) powered by Claude Code and Obsidian that proactively manages personal and business affairs 24/7. File watchers detect new items, Claude Code reasons about them, and the HITL approval workflow keeps the human in control of sensitive actions.
+A Digital Full-Time Employee (FTE) powered by **dual AI engines** (Claude Code + OpenAI) and **Obsidian vault** that proactively manages personal and business affairs 24/7. Three watchers (File, Gmail, WhatsApp) detect incoming items, Claude reasons about them, and the HITL approval workflow keeps the human in control of sensitive actions.
 
-[![Tier](https://img.shields.io/badge/tier-bronze-cd7f32)]()
+[![Tier](https://img.shields.io/badge/tier-gold-ffd700)]()
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue)]()
 [![TypeScript](https://img.shields.io/badge/typescript-next.js%2016-black)]()
 [![Claude Code](https://img.shields.io/badge/engine-claude%20code-orange)]()
+[![OpenAI](https://img.shields.io/badge/engine-openai-412991)]()
+[![FastAPI](https://img.shields.io/badge/backend-fastapi-009688)]()
 
 ---
 
 ## Architecture
 
 ```
-EXTERNAL SOURCES                    PERCEPTION LAYER
-  Files dropped in                    File Watcher (Python)
+EXTERNAL SOURCES                    PERCEPTION LAYER (3 Watchers)
+  Files in                            File Watcher (Python)
   /mnt/d/AI-Employee-Inbox   --->    monitors every 10s
+                                            |
+  Gmail (OAuth2)              --->    Gmail Watcher (Google API)
+  texcot...@gmail.com                monitors every 2min
+                                            |
+  WhatsApp Web                --->    WhatsApp Watcher (Playwright)
+  Business keyword scanning          monitors every 30s
                                             |
                                             v
                               OBSIDIAN VAULT (Local Markdown)
@@ -33,8 +41,10 @@ EXTERNAL SOURCES                    PERCEPTION LAYER
                               +-------------------------------+
                                             |
                                             v
-                              REASONING LAYER (Claude Code)
-                              Read -> Think -> Plan -> Act
+                              REASONING LAYER (Dual AI Engine)
+                              Claude Code CLI -> vault checks
+                              Claude API -> vault reasoning
+                              OpenAI API -> chat companion
                               Follows Company_Handbook rules
                                             |
                               +-------------+-------------+
@@ -47,17 +57,19 @@ EXTERNAL SOURCES                    PERCEPTION LAYER
                         Log activities        Execute after approval
                                             |
                                             v
-                              ACTION LAYER (MCP + Backend)
-                              FastAPI backend (port 8000)
-                              CEO Briefing generator
-                              Orchestrator coordination
+                              ACTION LAYER (Agent Skills + Backend)
+                              4 Claude Code agent skills
+                              FastAPI backend (dual AI)
+                              CEO Briefing generator (data-driven)
+                              Orchestrator (process management)
+                              Cron scheduling (automated tasks)
 ```
 
 ### Perception -> Reasoning -> Action Flow
 
-1. **Perception**: File Watcher detects new files in the drop folder
-2. **Reasoning**: Claude Code reads vault, applies Company_Handbook rules, creates plans
-3. **Action**: Auto-execute low-risk tasks, HITL-approve sensitive ones, update dashboard
+1. **Perception**: 3 Watchers (File, Gmail, WhatsApp) detect new items from external sources
+2. **Reasoning**: Claude Code reads vault, applies Company_Handbook rules, reasons about actions
+3. **Action**: Auto-execute low-risk tasks, HITL-approve sensitive ones, update dashboard, generate briefings
 
 ---
 
@@ -67,7 +79,9 @@ EXTERNAL SOURCES                    PERCEPTION LAYER
 
 - Python 3.11+
 - Node.js 18+ (for frontend)
-- Claude Code CLI (for full orchestration)
+- Claude Code CLI (for orchestration)
+- Google Cloud OAuth credentials (for Gmail watcher)
+- Playwright + Chromium (for WhatsApp watcher)
 
 ### Setup
 
@@ -81,35 +95,38 @@ pip install -r requirements.txt
 
 # Configure environment
 cp .env.example .env
-# Edit .env with your API keys
+# Edit .env with your API keys (ANTHROPIC_API_KEY + OPENAI_API_KEY)
 
 # Create the drop folder (file watcher monitors this)
 mkdir -p /mnt/d/AI-Employee-Inbox
 ```
 
-### Run the File Watcher
+### Run Individual Watchers
 
 ```bash
+# File Watcher -- monitors drop folder
 python watchers/file_watcher.py --vault ./vault
-```
 
-Drop a test file and watch it get processed:
-```bash
-echo "Test invoice from Client A" > /mnt/d/AI-Employee-Inbox/invoice.txt
-# Check vault/Needs_Action/ -- a new action item appears
+# Gmail Watcher -- requires credentials.json + OAuth setup
+python watchers/gmail_watcher.py --vault ./vault
+
+# WhatsApp Watcher -- requires Playwright + QR code scan
+pip install playwright && playwright install chromium
+export DISPLAY=:0  # WSL2 with WSLg
+python watchers/whatsapp_watcher.py --vault ./vault
 ```
 
 ### Run the Orchestrator (Full Mode)
 
 ```bash
-# Full orchestration (file watcher + Claude Code + scheduling)
+# All watchers + Claude Code + scheduling
+python orchestrator.py --gmail --whatsapp
+
+# File watcher only + Claude Code
 python orchestrator.py
 
 # Preview mode (no actual actions)
 python orchestrator.py --dry-run
-
-# Without Claude Code CLI
-python orchestrator.py --no-claude
 ```
 
 ### Run the Backend API
@@ -119,6 +136,7 @@ cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload --port 8000
 # Visit http://localhost:8000/health
+# Visit http://localhost:8000/api/vault/status
 ```
 
 ### Run the Frontend
@@ -129,31 +147,90 @@ npm install && npm run dev
 # Visit http://localhost:3000
 ```
 
+### Generate CEO Briefing
+
+```bash
+python watchers/ceo_briefing_generator.py --vault ./vault
+# Output: vault/Briefings/YYYY-MM-DD-ceo-briefing.md
+```
+
+### Setup Cron Jobs
+
+```bash
+bash scripts/setup-cron.sh
+# Installs: Monday 9AM briefing, 5-min Gmail checks, 6-hour dashboard updates
+```
+
 ---
 
 ## Key Features
 
-### 1. File System Watcher
-Monitors `/mnt/d/AI-Employee-Inbox` every 10 seconds. Categorizes files (document, code, data, image, video, archive) and creates structured action items in the vault.
+### 1. Three Watchers (Perception Layer)
 
-### 2. Human-in-the-Loop (HITL) Workflow
+| Watcher | Source | Interval | Auth |
+|---------|--------|----------|------|
+| **File Watcher** | `/mnt/d/AI-Employee-Inbox` | 10s | None |
+| **Gmail Watcher** | Gmail inbox (OAuth2) | 2min | Google OAuth `credentials.json` |
+| **WhatsApp Watcher** | WhatsApp Web (Playwright) | 30s | QR code scan |
+
+Each watcher detects relevant items, creates structured action files in `vault/Needs_Action/`, and logs activity to `vault/Logs/`.
+
+### 2. Dual AI Engine (Reasoning Layer)
+
+| Engine | Purpose | Integration |
+|--------|---------|-------------|
+| **Claude Code CLI** | Vault reasoning & orchestration | `claude --print` via orchestrator |
+| **Claude API** | Vault item analysis & triage | `backend/services/claude_service.py` |
+| **OpenAI API** | Chat companion with constitutional rules | `backend/services/chatgpt_service.py` |
+
+### 3. Human-in-the-Loop (HITL) Workflow
+
 Sensitive actions create approval files in `vault/Pending_Approval/`. Move files to `vault/Approved/` or `vault/Rejected/` to make decisions. The AI never acts on sensitive matters without human approval.
 
-### 3. Claude Code as the Brain
-CLAUDE.md at the project root tells Claude Code how to operate as the AI Employee. It reads the vault, follows Company_Handbook rules, processes items, and updates the dashboard.
+**Auto-Execute**: Read/categorize files, update dashboard, log activities, generate briefings
+**Requires Approval**: External comms, payments >$50, production deploys, data deletion
 
-### 4. Agent Skills
-Four specialized Claude Code agent skills in `.claude/agents/fte/`:
-- **dashboard-updater** -- Scans vault folders, updates Dashboard.md metrics
-- **hitl-approval-manager** -- Creates/processes approval requests
-- **ceo-briefing-generator** -- Weekly executive briefings from logs and metrics
-- **file-processor** -- Categorizes and triages Inbox items
+### 4. Agent Skills (4 Claude Code Skills)
 
-### 5. CEO Briefing
-Automated weekly briefing generated every Monday at 9 AM, summarizing completed tasks, bottlenecks, financial metrics, and proactive suggestions.
+Specialized Claude Code agent skills in `.claude/agents/fte/`:
+- **dashboard-updater** -- Scans vault folders, updates Dashboard.md with real-time metrics
+- **hitl-approval-manager** -- Creates/processes approval requests, tracks decisions
+- **ceo-briefing-generator** -- Weekly executive briefings from real vault data
+- **file-processor** -- Categorizes and triages Inbox items by file type
+
+### 5. CEO Briefing (Data-Driven)
+
+Automated weekly briefing generated every Monday at 9 AM:
+- Reads real data from `vault/Logs/` (last 7 days)
+- Counts items in all vault folders
+- Identifies bottlenecks (items >48 hours old)
+- Reports watcher health status
+- Provides actionable recommendations
 
 ### 6. Constitutional AI
-Backend middleware enforces safety rules. Blocked queries get Socratic responses. Flagged queries enter HITL review.
+
+Backend middleware enforces safety rules on chat endpoints. Blocked queries get Socratic responses. Flagged queries enter HITL review.
+
+### 7. Orchestrator (Master Process)
+
+`orchestrator.py` coordinates everything:
+- Starts/monitors/restarts crashed watchers
+- Triggers Claude Code vault checks on interval
+- Schedules CEO briefings (Monday 9 AM)
+- Graceful shutdown on SIGINT/SIGTERM
+
+### 8. Backend API Endpoints
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/` | GET | Service info + AI engine status |
+| `/health` | GET | Health check with dual engine config |
+| `/api/chat` | POST | Chat with constitutional filtering |
+| `/api/vault/status` | GET | Real-time vault folder counts |
+| `/api/vault/triage` | GET | Claude-powered triage recommendations |
+| `/api/vault/reason` | POST | Analyze specific vault items with Claude |
+| `/api/vault/needs-action` | GET | List items awaiting action |
+| `/api/conversations/{id}` | GET | Conversation history |
 
 ---
 
@@ -161,8 +238,8 @@ Backend middleware enforces safety rules. Blocked queries get Socratic responses
 
 ```
 vault/
-  Dashboard.md           # Real-time business snapshot
-  Company_Handbook.md    # Rules of engagement
+  Dashboard.md           # Real-time business snapshot (auto-updated)
+  Company_Handbook.md    # Rules of engagement (v2.0.0)
   Business_Goals.md      # Strategic objectives and KPIs
   Inbox/                 # New items to triage
   Needs_Action/          # Items requiring processing
@@ -181,45 +258,65 @@ vault/
 
 | Layer | Technology |
 |-------|-----------|
-| **Brain** | Claude Code (reasoning engine) |
+| **Reasoning** | Claude Code CLI + Claude API (Anthropic) |
+| **Chat** | OpenAI API + Constitutional AI middleware |
 | **Memory/GUI** | Obsidian vault (local Markdown) |
-| **Perception** | Python file watcher (watchers/) |
+| **Perception** | 3 Python watchers (file, Gmail, WhatsApp) |
 | **Backend** | Python FastAPI + Uvicorn |
 | **Frontend** | Next.js 16 + TypeScript + Tailwind CSS |
-| **AI Chat** | OpenAI API + Constitutional AI middleware |
-| **Orchestration** | Python orchestrator with schedule library |
-| **Deployment** | Render (backend + frontend) |
+| **Browser Automation** | Playwright (WhatsApp Web) |
+| **Scheduling** | Python `schedule` + cron |
+| **Orchestration** | Python orchestrator with process management |
+| **Deployment** | Render (backend) + Vercel (frontend) |
 
 ---
 
 ## Deployment
 
-### Render
+### Render (Backend)
 
 The project includes a `render.yaml` Blueprint for one-click deployment:
 
 1. Push to GitHub
 2. Connect repo to Render
-3. Render auto-detects `render.yaml` and deploys both services
-4. Set `OPENAI_API_KEY` in Render environment variables
+3. Render auto-detects `render.yaml` and deploys
+4. Set `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` in Render environment variables
 
-**Backend**: `https://personal-ai-employee-backend.onrender.com`
-**Frontend**: `https://personal-ai-employee-frontend.onrender.com`
+### Vercel (Frontend)
+
+```bash
+cd frontend
+vercel --prod
+```
 
 ---
 
-## Background: Hackathon Progression
+## Tier Compliance
 
-This project evolved through 5 progressive hackathons:
+### Bronze Tier -- COMPLETE
 
-| Hackathon | Project | What Was Built | Tier |
-|-----------|---------|---------------|------|
-| **H0** | Personal AI Employee | File watcher, HITL workflow, vault, agent skills | Bronze |
-| **H1** | Course Companion | FastAPI backend, Constitutional AI filter | Silver |
-| **H2** | AI-Powered Todo | Spec-driven development, CRUD with constitution | Silver |
-| **H3** | Advanced Todo | Event-driven (Kafka, Dapr), team collaboration | Gold |
-| **H4** | Cloud-Native | Full Kubernetes cluster (14 manifests), CI/CD | Platinum |
-| **H4.5** | Discord Bot | TodoMaster AI with 6 slash commands | Extended |
+- [x] Obsidian vault with Dashboard.md (real-time metrics)
+- [x] Company_Handbook.md (v2.0.0 with decision framework)
+- [x] One working Watcher script (file watcher)
+- [x] Claude Code reading/writing vault (orchestrator + API)
+- [x] Folder structure: /Inbox, /Needs_Action, /Done + 6 more
+- [x] AI functionality as Agent Skills (4 skills)
+
+### Silver Tier -- COMPLETE
+
+- [x] Three Watcher scripts (File + Gmail + WhatsApp)
+- [x] Claude reasoning loop (orchestrator triggers `claude --print`)
+- [x] HITL approval workflow (Pending_Approval folder-based)
+- [x] Basic scheduling (cron + Python schedule)
+- [x] Agent Skills with YAML frontmatter (executable format)
+
+### Gold Tier -- COMPLETE
+
+- [x] CEO Briefing with real data (data-driven from vault/Logs)
+- [x] Audit logging (JSON logs in vault/Logs/)
+- [x] Dual AI engine (OpenAI chat + Claude reasoning)
+- [x] Error recovery (orchestrator restarts crashed watchers)
+- [x] Deployment ready (render.yaml + Vercel)
 
 ---
 
@@ -227,22 +324,11 @@ This project evolved through 5 progressive hackathons:
 
 | Deliverable | Link / Status |
 |-------------|---------------|
-| **Submission Form** | [Google Form](https://forms.gle/JR9T1SJq5rmQyGkGA) |
 | **GitHub Repository** | [asadullah48/hackathon-completion-engine](https://github.com/asadullah48/hackathon-completion-engine) |
 | **Demo Video** | _TODO: Add YouTube/Loom link_ |
-| **Tier Declaration** | Bronze |
-| **Architecture** | [ARCHITECTURE.md](./ARCHITECTURE.md) |
-| **Security** | Credentials in `.env` (gitignored); K8s Secrets for cloud; HITL for sensitive actions |
-
-### Judging Criteria Alignment
-
-| Criteria | Weight | How This Project Addresses It |
-|----------|--------|-------------------------------|
-| **Functionality** | 30% | File watcher + HITL workflow + vault dashboard + CEO briefing + agent skills + orchestrator |
-| **Innovation** | 25% | Claude Code as autonomous FTE brain, vault-based HITL, agent skill architecture |
-| **Practicality** | 20% | Actually usable for daily file triage, Render deployment for cloud access |
-| **Security** | 15% | HITL approval workflow, .env credentials, constitutional AI filtering, audit logging |
-| **Documentation** | 10% | README, CLAUDE.md, ARCHITECTURE.md, Company_Handbook, agent skill docs |
+| **Tier Declaration** | Gold |
+| **Architecture** | See diagram above |
+| **Security** | Credentials in `.env` (gitignored); HITL for sensitive actions; audit logging |
 
 ---
 

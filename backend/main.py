@@ -1,7 +1,8 @@
 
 """
-H1 Course Companion FTE - Main FastAPI Application
-Enforces constitutional rules for academic integrity
+Personal AI Employee - Main FastAPI Application
+Dual AI engine: OpenAI for chat, Claude for vault reasoning.
+Enforces constitutional rules for academic integrity.
 """
 
 from fastapi import FastAPI, Request
@@ -24,6 +25,7 @@ logger = logging.getLogger(__name__)
 
 # Import routers
 from routers import chat, progress
+from routers import vault
 
 # Import middleware
 from middleware.constitutional_filter import ConstitutionalFilter
@@ -33,9 +35,9 @@ from services.dapr_service import get_dapr_service
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="Course Companion API",
-    description="AI-powered learning assistant with constitutional rules",
-    version="1.0.0"
+    title="Personal AI Employee API",
+    description="Dual AI engine: OpenAI (chat) + Claude (vault reasoning). Constitutional rules enforced.",
+    version="2.0.0"
 )
 
 # CORS configuration
@@ -99,9 +101,10 @@ async def constitutional_middleware(request: Request, call_next):
 async def root():
     return {
         "status": "operational",
-        "service": "Course Companion API",
-        "version": "1.0.0",
-        "constitutional_rules": "enforced"
+        "service": "Personal AI Employee API",
+        "version": "2.0.0",
+        "ai_engines": {"openai": "chat", "claude": "vault_reasoning"},
+        "constitutional_rules": "enforced",
     }
 
 
@@ -110,13 +113,17 @@ async def health_check():
     return {
         "status": "healthy",
         "timestamp": time.time(),
-        "api_key_configured": bool(os.getenv("OPENAI_API_KEY"))
+        "engines": {
+            "openai": {"configured": bool(os.getenv("OPENAI_API_KEY")), "role": "chat_companion"},
+            "claude": {"configured": bool(os.getenv("ANTHROPIC_API_KEY")), "role": "vault_reasoning"},
+        },
     }
 
 
 # Include routers with /api prefix
 app.include_router(chat.router, prefix="/api", tags=["chat"])
 app.include_router(progress.router, prefix="/api", tags=["progress"])
+app.include_router(vault.router, prefix="/api", tags=["vault"])
 
 
 if __name__ == "__main__":
