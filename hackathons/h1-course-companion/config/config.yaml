@@ -1,0 +1,51 @@
+# H0 Personal AI CTO - Configuration
+# YAML format
+
+engine:
+  name: "Personal AI CTO"
+  version: "1.0.0"
+  author: "Asadullah"
+
+watcher:
+  default_interval: 10
+  drop_folder: "/mnt/d/AI-Employee-Inbox"
+  vault_path: "./vault"
+  file_categories:
+    document: [".pdf", ".docx", ".doc", ".txt", ".md", ".rtf"]
+    code: [".py", ".js", ".ts", ".tsx", ".jsx", ".java", ".cpp", ".c", ".h"]
+    data: [".csv", ".xlsx", ".xls", ".json", ".xml", ".sql", ".db"]
+    image: [".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".bmp"]
+    video: [".mp4", ".mov", ".avi", ".mkv", ".wmv", ".flv"]
+    archive: [".zip", ".rar", ".7z", ".tar", ".gz"]
+
+hitl:
+  enabled: true
+  approval_required_extensions: [".pdf", ".docx", ".xlsx"]
+  default_priority: "medium"
+  response_time_requirements:
+    high: 3600  # 1 hour in seconds
+    medium: 14400  # 4 hours in seconds
+    low: 86400  # 24 hours in seconds
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file_path: "./logs/activity.log"
+  max_file_size: 10485760  # 10MB
+
+vault:
+  paths:
+    inbox: "Inbox/"
+    needs_action: "Needs_Action/"
+    pending_approval: "Pending_Approval/"
+    approved: "Approved/"
+    rejected: "Rejected/"
+    done: "Done/"
+    hackathons: "Hackathons/"
+    logs: "Logs/"
+    briefings: "Briefings/"
+
+dashboard:
+  refresh_interval: 30  # seconds
+  show_recent_activities: 10
+  auto_update: true

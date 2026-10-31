@@ -1,0 +1,536 @@
+[
+  {
+    "timestamp": "2026-01-26T12:04:10.509120",
+    "student_id": "demo_student",
+    "conversation_id": "749885df-46f9-42b9-9330-335364a36124",
+    "query": "Solve my homework",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "solve\\s+(this|my|the)\\s+(homework|assignment|problem)"
+    }
+  },
+  {
+    "timestamp": "2026-01-26T12:04:10.597394",
+    "student_id": "demo_student",
+    "conversation_id": "928df000-fe2e-414a-af80-94588851f466",
+    "query": "Can you explain sorting algorithms?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-26T12:04:10.672585",
+    "student_id": "demo_student",
+    "conversation_id": "e078a38e-9327-4260-af7c-c55dd3db5266",
+    "query": "Exam tomorrow, need help urgently",
+    "response": "Your request has been flagged for review. A human instructor will review your question shortly. In the meantime, I can help with general learning concepts.",
+    "decision": "flag",
+    "metadata": {
+      "reason": "Query flagged as suspicious: time pressure or urgency detected",
+      "requires_human_review": true
+    }
+  },
+  {
+    "timestamp": "2026-01-26T12:04:15.623277",
+    "student_id": "demo_student",
+    "conversation_id": "7c7cf670-e091-4a02-bfa4-eecc1daab526",
+    "query": "Exam tomorrow, need help urgently",
+    "response": "Your request has been flagged for review. A human instructor will review your question shortly. In the meantime, I can help with general learning concepts.",
+    "decision": "flag",
+    "metadata": {
+      "reason": "Query flagged as suspicious: time pressure or urgency detected",
+      "requires_human_review": true
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.318149",
+    "student_id": "test_student_1769433065317",
+    "conversation_id": null,
+    "query": "How does recursion work?",
+    "response": "Great question! What do you already know about functions calling themselves?",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.344125",
+    "student_id": "test_student_1769433065343",
+    "conversation_id": "conv_1769433065",
+    "query": "Test query",
+    "response": "Test response",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.373550",
+    "student_id": "test_student_1769433065373",
+    "conversation_id": null,
+    "query": "Explain recursion",
+    "response": "Recursion is...",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 150,
+      "mock": false,
+      "concepts": [
+        "recursion",
+        "functions"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.399762",
+    "student_id": "test_student_1769433065399",
+    "conversation_id": null,
+    "query": "Question 0",
+    "response": "Answer 0",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.432738",
+    "student_id": "test_student_1769433065399",
+    "conversation_id": null,
+    "query": "Question 1",
+    "response": "Answer 1",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.465146",
+    "student_id": "test_student_1769433065399",
+    "conversation_id": null,
+    "query": "Question 2",
+    "response": "Answer 2",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.537834",
+    "student_id": "test_student_1769433065537",
+    "conversation_id": null,
+    "query": "Test query",
+    "response": "Test response",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.581229",
+    "student_id": "test_student_1769433065580",
+    "conversation_id": null,
+    "query": "Query 0",
+    "response": "Response 0",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.597790",
+    "student_id": "test_student_1769433065580",
+    "conversation_id": null,
+    "query": "Query 1",
+    "response": "Response 1",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.622061",
+    "student_id": "test_student_1769433065580",
+    "conversation_id": null,
+    "query": "Query 2",
+    "response": "Response 2",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.648333",
+    "student_id": "test_student_1769433065580",
+    "conversation_id": null,
+    "query": "Query 3",
+    "response": "Response 3",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.673062",
+    "student_id": "test_student_1769433065580",
+    "conversation_id": null,
+    "query": "Query 4",
+    "response": "Response 4",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.724527",
+    "student_id": "test_student_1769433065724",
+    "conversation_id": null,
+    "query": "Question 0",
+    "response": "Answer 0",
+    "decision": "allow",
+    "metadata": {
+      "concepts": [
+        "concept_0"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.740105",
+    "student_id": "test_student_1769433065724",
+    "conversation_id": null,
+    "query": "Question 1",
+    "response": "Answer 1",
+    "decision": "allow",
+    "metadata": {
+      "concepts": [
+        "concept_1"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.765685",
+    "student_id": "test_student_1769433065724",
+    "conversation_id": null,
+    "query": "Question 2",
+    "response": "Answer 2",
+    "decision": "allow",
+    "metadata": {
+      "concepts": [
+        "concept_2"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:11:05.864287",
+    "student_id": "test_student_1769433065863",
+    "conversation_id": null,
+    "query": "Urgent help needed for exam tomorrow",
+    "response": "Flagged for review",
+    "decision": "flag",
+    "metadata": {
+      "requires_human_review": true
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:14:21.542651",
+    "student_id": "validator",
+    "conversation_id": "b6ca52b5-6b7e-42bb-89e1-c0d90765e9a7",
+    "query": "Write my assignment code",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:14:26.516842",
+    "student_id": "validator",
+    "conversation_id": "82651ae8-af91-4472-aa61-485aa5a35370",
+    "query": "Can you explain recursion?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:14:31.739075",
+    "student_id": "validator",
+    "conversation_id": "67ac211c-8d60-4473-a5b6-83e4e83be212",
+    "query": "Exam in 1 hour need help",
+    "response": "Your request has been flagged for review. A human instructor will review your question shortly. In the meantime, I can help with general learning concepts.",
+    "decision": "flag",
+    "metadata": {
+      "reason": "Query flagged as suspicious: time pressure or urgency detected",
+      "requires_human_review": true
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:15:00.978904",
+    "student_id": "validator",
+    "conversation_id": "60e30f53-e30d-4f72-b74c-75439d4157b1",
+    "query": "solve my homework for me",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "solve\\s+(this|my|the)\\s+(homework|assignment|problem)"
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:21:20.949863",
+    "student_id": "validator",
+    "conversation_id": "eff18948-11f9-4b17-9795-21167654f888",
+    "query": "Write my assignment code",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:21:21.092134",
+    "student_id": "validator",
+    "conversation_id": "2be808eb-8601-4122-b85e-6c5c53fb8202",
+    "query": "Can you explain recursion?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:21:21.297146",
+    "student_id": "validator",
+    "conversation_id": "cda4f05e-d88c-475c-bfbb-1ed35ca4bfbd",
+    "query": "Exam in 1 hour need help",
+    "response": "Your request has been flagged for review. A human instructor will review your question shortly. In the meantime, I can help with general learning concepts.",
+    "decision": "flag",
+    "metadata": {
+      "reason": "Query flagged as suspicious: time pressure or urgency detected",
+      "requires_human_review": true
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:22:25.449220",
+    "student_id": "validator",
+    "conversation_id": "0fdd40a3-ff24-4fef-980f-9201c67093a7",
+    "query": "solve my homework problem",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "solve\\s+(this|my|the)\\s+(homework|assignment|problem)"
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:22:25.540662",
+    "student_id": "validator",
+    "conversation_id": "feab6edc-c2ef-4c30-bfe2-83f2b381beb6",
+    "query": "write the code for me please",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "write\\s+(the|this|my)\\s+code\\s+for\\s+me"
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:22:25.637332",
+    "student_id": "validator",
+    "conversation_id": "714cc9dc-c9c0-4ceb-ad60-80ddde2eda2f",
+    "query": "give me the answer to question 5",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "give\\s+me\\s+the\\s+answer"
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:22:25.772546",
+    "student_id": "validator",
+    "conversation_id": "e947ba80-bfcb-456c-a60d-5f2371774c77",
+    "query": "do my homework for me",
+    "response": "I'd love to help you learn! Instead of providing the answer directly, let's work through this together. What have you tried so far? What part of the problem is confusing you?",
+    "decision": "block",
+    "metadata": {
+      "reason": "Query matches prohibited pattern: academic dishonesty detected",
+      "pattern_matched": "do\\s+my\\s+(homework|assignment|test|quiz)"
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:22:25.883070",
+    "student_id": "validator",
+    "conversation_id": "5b259670-0409-4443-ab65-b62f5c4f0a76",
+    "query": "Can you explain sorting algorithms?",
+    "response": "Great question! Let me guide you through this.\n\nBefore I can help you understand this topic, I'd like to know:\n1. What have you already tried?\n2. What part of the concept is most confusing?\n3. What do you think the first step might be?\n\nRemember, the goal isn't just to get the answer - it's to truly understand the concept so you can apply it in the future!\n\n[Note: This is a mock response - configure OPENAI_API_KEY for full functionality]",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 110,
+      "mock": true
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:22:26.043976",
+    "student_id": "validator",
+    "conversation_id": "6a64f219-637e-4fff-8e7d-8ee7c855657d",
+    "query": "exam tomorrow I urgently need help",
+    "response": "Your request has been flagged for review. A human instructor will review your question shortly. In the meantime, I can help with general learning concepts.",
+    "decision": "flag",
+    "metadata": {
+      "reason": "Query flagged as suspicious: time pressure or urgency detected",
+      "requires_human_review": true
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:31:25.940217",
+    "student_id": "test_student_1769434285939",
+    "conversation_id": null,
+    "query": "How does recursion work?",
+    "response": "Great question! What do you already know about functions calling themselves?",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:31:25.972166",
+    "student_id": "test_student_1769434285971",
+    "conversation_id": "conv_1769434285",
+    "query": "Test query",
+    "response": "Test response",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:31:26.011704",
+    "student_id": "test_student_1769434286011",
+    "conversation_id": null,
+    "query": "Explain recursion",
+    "response": "Recursion is...",
+    "decision": "allow",
+    "metadata": {
+      "tokens_used": 150,
+      "mock": false,
+      "concepts": [
+        "recursion",
+        "functions"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:31:26.061842",
+    "student_id": "test_student_1769434286061",
+    "conversation_id": null,
+    "query": "Question 0",
+    "response": "Answer 0",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:31:26.103808",
+    "student_id": "test_student_1769434286061",
+    "conversation_id": null,
+    "query": "Question 1",
+    "response": "Answer 1",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:31:26.145581",
+    "student_id": "test_student_1769434286061",
+    "conversation_id": null,
+    "query": "Question 2",
+    "response": "Answer 2",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:31:26.239128",
+    "student_id": "test_student_1769434286238",
+    "conversation_id": null,
+    "query": "Test query",
+    "response": "Test response",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:31:26.293186",
+    "student_id": "test_student_1769434286292",
+    "conversation_id": null,
+    "query": "Query 0",
+    "response": "Response 0",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:31:26.312705",
+    "student_id": "test_student_1769434286292",
+    "conversation_id": null,
+    "query": "Query 1",
+    "response": "Response 1",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:31:26.345645",
+    "student_id": "test_student_1769434286292",
+    "conversation_id": null,
+    "query": "Query 2",
+    "response": "Response 2",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:31:26.377419",
+    "student_id": "test_student_1769434286292",
+    "conversation_id": null,
+    "query": "Query 3",
+    "response": "Response 3",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:31:26.408934",
+    "student_id": "test_student_1769434286292",
+    "conversation_id": null,
+    "query": "Query 4",
+    "response": "Response 4",
+    "decision": "allow",
+    "metadata": {}
+  },
+  {
+    "timestamp": "2026-01-26T18:31:26.476261",
+    "student_id": "test_student_1769434286475",
+    "conversation_id": null,
+    "query": "Question 0",
+    "response": "Answer 0",
+    "decision": "allow",
+    "metadata": {
+      "concepts": [
+        "concept_0"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:31:26.493353",
+    "student_id": "test_student_1769434286475",
+    "conversation_id": null,
+    "query": "Question 1",
+    "response": "Answer 1",
+    "decision": "allow",
+    "metadata": {
+      "concepts": [
+        "concept_1"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:31:26.526531",
+    "student_id": "test_student_1769434286475",
+    "conversation_id": null,
+    "query": "Question 2",
+    "response": "Answer 2",
+    "decision": "allow",
+    "metadata": {
+      "concepts": [
+        "concept_2"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-01-26T18:31:26.627056",
+    "student_id": "test_student_1769434286626",
+    "conversation_id": null,
+    "query": "Urgent help needed for exam tomorrow",
+    "response": "Flagged for review",
+    "decision": "flag",
+    "metadata": {
+      "requires_human_review": true
+    }
+  }
+]

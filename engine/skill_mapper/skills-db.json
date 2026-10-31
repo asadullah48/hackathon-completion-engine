@@ -1,0 +1,211 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-01-19",
+  "skills": [
+    {
+      "id": "watcher-orchestrator",
+      "name": "Watcher Orchestrator",
+      "category": "core",
+      "capabilities": [
+        "process management",
+        "health monitoring",
+        "auto-recovery",
+        "event coordination"
+      ],
+      "token_cost": 5000,
+      "dependencies": [],
+      "hackathon_relevance": ["h0", "h1"]
+    },
+    {
+      "id": "systematic-debugging",
+      "name": "Systematic Debugging",
+      "category": "core",
+      "capabilities": [
+        "error analysis",
+        "root cause identification",
+        "fix validation"
+      ],
+      "token_cost": 3000,
+      "dependencies": [],
+      "hackathon_relevance": ["h0", "h1", "h2", "h3", "h4"]
+    },
+    {
+      "id": "verification-before-completion",
+      "name": "Verification Before Completion",
+      "category": "core",
+      "capabilities": [
+        "quality assurance",
+        "checklist validation",
+        "completeness verification"
+      ],
+      "token_cost": 2000,
+      "dependencies": [],
+      "hackathon_relevance": ["h0", "h1", "h2", "h3", "h4"]
+    },
+    {
+      "id": "test-driven-development",
+      "name": "Test-Driven Development",
+      "category": "development",
+      "capabilities": [
+        "test creation",
+        "red-green-refactor",
+        "coverage analysis"
+      ],
+      "token_cost": 4000,
+      "dependencies": [],
+      "hackathon_relevance": ["h2", "h3"]
+    },
+    {
+      "id": "using-git-worktrees",
+      "name": "Git Worktrees",
+      "category": "development",
+      "capabilities": [
+        "parallel development",
+        "branch isolation",
+        "workspace management"
+      ],
+      "token_cost": 2000,
+      "dependencies": [],
+      "hackathon_relevance": ["h3", "h4"]
+    },
+    {
+      "id": "executing-plans",
+      "name": "Executing Plans",
+      "category": "development",
+      "capabilities": [
+        "task execution",
+        "progress tracking",
+        "checkpoint management"
+      ],
+      "token_cost": 3000,
+      "dependencies": [],
+      "hackathon_relevance": ["h0", "h1", "h2", "h3", "h4"]
+    },
+    {
+      "id": "ceo-briefing",
+      "name": "CEO Briefing",
+      "category": "business",
+      "capabilities": [
+        "executive summary",
+        "status reporting",
+        "decision support"
+      ],
+      "token_cost": 4000,
+      "dependencies": [],
+      "hackathon_relevance": ["h0"]
+    },
+    {
+      "id": "business-audit-engine",
+      "name": "Business Audit Engine",
+      "category": "business",
+      "capabilities": [
+        "compliance checking",
+        "gap analysis",
+        "recommendation generation"
+      ],
+      "token_cost": 5000,
+      "dependencies": [],
+      "hackathon_relevance": ["h0"]
+    },
+    {
+      "id": "discovering-intent",
+      "name": "Discovering Intent",
+      "category": "communication",
+      "capabilities": [
+        "requirement elicitation",
+        "clarification",
+        "context understanding"
+      ],
+      "token_cost": 3000,
+      "dependencies": [],
+      "hackathon_relevance": ["h0", "h1", "h2"]
+    },
+    {
+      "id": "doc-coauthoring",
+      "name": "Document Co-authoring",
+      "category": "communication",
+      "capabilities": [
+        "collaborative writing",
+        "version tracking",
+        "feedback integration"
+      ],
+      "token_cost": 3000,
+      "dependencies": [],
+      "hackathon_relevance": ["h0", "h2"]
+    },
+    {
+      "id": "brainstorming",
+      "name": "Brainstorming",
+      "category": "communication",
+      "capabilities": [
+        "idea generation",
+        "concept exploration",
+        "solution ideation"
+      ],
+      "token_cost": 2000,
+      "dependencies": [],
+      "hackathon_relevance": ["h0", "h1", "h2", "h3", "h4"]
+    },
+    {
+      "id": "fetch-library-docs",
+      "name": "Fetch Library Docs",
+      "category": "integration",
+      "capabilities": [
+        "documentation retrieval",
+        "API reference",
+        "example extraction"
+      ],
+      "token_cost": 2000,
+      "dependencies": [],
+      "hackathon_relevance": ["h1", "h3"]
+    },
+    {
+      "id": "context7",
+      "name": "Context7",
+      "category": "integration",
+      "capabilities": [
+        "context management",
+        "memory persistence",
+        "state tracking"
+      ],
+      "token_cost": 3000,
+      "dependencies": [],
+      "hackathon_relevance": ["h1"]
+    },
+    {
+      "id": "postman-mcp",
+      "name": "Postman MCP",
+      "category": "integration",
+      "capabilities": [
+        "API testing",
+        "request management",
+        "collection execution"
+      ],
+      "token_cost": 2000,
+      "dependencies": [],
+      "hackathon_relevance": ["h1", "h3"]
+    }
+  ],
+  "categories": {
+    "core": {
+      "description": "Essential skills for all hackathons",
+      "priority": 1
+    },
+    "development": {
+      "description": "Software development best practices",
+      "priority": 2
+    },
+    "business": {
+      "description": "Business intelligence and reporting",
+      "priority": 3
+    },
+    "communication": {
+      "description": "User interaction and documentation",
+      "priority": 4
+    },
+    "integration": {
+      "description": "External system integration",
+      "priority": 5
+    }
+  }
+}

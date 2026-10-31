@@ -1,0 +1,12 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: notification-pdb
+  namespace: todo-app
+spec:
+  minAvailable: 1  # Ensure the notification service remains available
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: notification
+      app.kubernetes.io/instance: todo-app
+      app.kubernetes.io/name: todo-app

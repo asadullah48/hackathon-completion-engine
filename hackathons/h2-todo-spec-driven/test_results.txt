@@ -1,0 +1,111 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.3, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /mnt/d/Personal-AI-Employee
+configfile: pyproject.toml
+plugins: langsmith-0.5.0, anyio-3.7.1
+collecting ... collected 67 items
+
+tests/test_constitutional_todos.py::TestProhibitedPatterns::test_prohibited_homework_blocked PASSED [  1%]
+tests/test_constitutional_todos.py::TestProhibitedPatterns::test_prohibited_hacking_blocked PASSED [  2%]
+tests/test_constitutional_todos.py::TestProhibitedPatterns::test_prohibited_cheating_blocked PASSED [  4%]
+tests/test_constitutional_todos.py::TestProhibitedPatterns::test_prohibited_essay_writing_blocked PASSED [  5%]
+tests/test_constitutional_todos.py::TestProhibitedPatterns::test_prohibited_fake_documents_blocked PASSED [  7%]
+tests/test_constitutional_todos.py::TestProhibitedPatterns::test_prohibited_harassment_blocked PASSED [  8%]
+tests/test_constitutional_todos.py::TestProhibitedPatterns::test_prohibited_plagiarize_blocked PASSED [ 10%]
+tests/test_constitutional_todos.py::TestAllowedPatterns::test_allowed_study_todo PASSED [ 11%]
+tests/test_constitutional_todos.py::TestAllowedPatterns::test_allowed_work_todo PASSED [ 13%]
+tests/test_constitutional_todos.py::TestAllowedPatterns::test_allowed_exercise_todo PASSED [ 14%]
+tests/test_constitutional_todos.py::TestAllowedPatterns::test_allowed_practice_coding PASSED [ 16%]
+tests/test_constitutional_todos.py::TestAllowedPatterns::test_allowed_research_topic PASSED [ 17%]
+tests/test_constitutional_todos.py::TestAllowedPatterns::test_allowed_read_book PASSED [ 19%]
+tests/test_constitutional_todos.py::TestFlaggedPatterns::test_flagged_urgent_todo PASSED [ 20%]
+tests/test_constitutional_todos.py::TestFlaggedPatterns::test_flagged_urgent_complete PASSED [ 22%]
+tests/test_constitutional_todos.py::TestFlaggedPatterns::test_flagged_deadline_complete_assignment PASSED [ 23%]
+tests/test_constitutional_todos.py::TestValidateTodo::test_validate_todo_title_blocked PASSED [ 25%]
+tests/test_constitutional_todos.py::TestValidateTodo::test_validate_todo_description_blocked PASSED [ 26%]
+tests/test_constitutional_todos.py::TestValidateTodo::test_validate_todo_both_allowed PASSED [ 28%]
+tests/test_constitutional_todos.py::TestValidateTodo::test_validate_todo_flagged_title PASSED [ 29%]
+tests/test_constitutional_todos.py::TestValidateTodo::test_validate_todo_empty_description PASSED [ 31%]
+tests/test_constitutional_todos.py::TestEdgeCases::test_empty_content PASSED [ 32%]
+tests/test_constitutional_todos.py::TestEdgeCases::test_case_insensitive_blocking PASSED [ 34%]
+tests/test_constitutional_todos.py::TestEdgeCases::test_partial_match_homework PASSED [ 35%]
+tests/test_constitutional_todos.py::TestEdgeCases::test_legitimate_homework_help PASSED [ 37%]
+tests/test_constitutional_todos.py::TestConstitutionalResultFormat::test_result_to_dict_allow PASSED [ 38%]
+tests/test_constitutional_todos.py::TestConstitutionalResultFormat::test_result_to_dict_block PASSED [ 40%]
+tests/test_crud_operations.py::TestCreateTodo::test_create_todo_success PASSED [ 41%]
+tests/test_crud_operations.py::TestCreateTodo::test_create_todo_constitutional_block PASSED [ 43%]
+tests/test_crud_operations.py::TestCreateTodo::test_create_todo_flagged PASSED [ 44%]
+tests/test_crud_operations.py::TestCreateTodo::test_create_todo_with_defaults PASSED [ 46%]
+tests/test_crud_operations.py::TestCreateTodo::test_create_todo_with_description PASSED [ 47%]
+tests/test_crud_operations.py::TestListTodos::test_list_todos_empty PASSED [ 49%]
+tests/test_crud_operations.py::TestListTodos::test_list_todos_with_data PASSED [ 50%]
+tests/test_crud_operations.py::TestListTodos::test_filter_by_category PASSED [ 52%]
+tests/test_crud_operations.py::TestListTodos::test_filter_by_status PASSED [ 53%]
+tests/test_crud_operations.py::TestListTodos::test_filter_by_priority PASSED [ 55%]
+tests/test_crud_operations.py::TestListTodos::test_search_todos PASSED   [ 56%]
+tests/test_crud_operations.py::TestGetTodo::test_get_todo_success PASSED [ 58%]
+tests/test_crud_operations.py::TestGetTodo::test_get_todo_not_found PASSED [ 59%]
+tests/test_crud_operations.py::TestUpdateTodo::test_update_todo PASSED   [ 61%]
+tests/test_crud_operations.py::TestUpdateTodo::test_update_todo_status PASSED [ 62%]
+tests/test_crud_operations.py::TestUpdateTodo::test_update_todo_constitutional_recheck PASSED [ 64%]
+tests/test_crud_operations.py::TestUpdateTodo::test_update_todo_not_found PASSED [ 65%]
+tests/test_crud_operations.py::TestDeleteTodo::test_delete_todo PASSED   [ 67%]
+tests/test_crud_operations.py::TestDeleteTodo::test_delete_todo_not_found PASSED [ 68%]
+tests/test_crud_operations.py::TestStats::test_stats_empty PASSED        [ 70%]
+tests/test_crud_operations.py::TestStats::test_stats_with_data PASSED    [ 71%]
+tests/test_crud_operations.py::TestHealthCheck::test_health_check PASSED [ 73%]
+tests/test_crud_operations.py::TestHealthCheck::test_root_endpoint PASSED [ 74%]
+tests/test_models.py::TestTodoEnums::test_todo_category_values PASSED    [ 76%]
+tests/test_models.py::TestTodoEnums::test_todo_priority_values PASSED    [ 77%]
+tests/test_models.py::TestTodoEnums::test_todo_status_values PASSED      [ 79%]
+tests/test_models.py::TestTodoEnums::test_constitutional_decision_values PASSED [ 80%]
+tests/test_models.py::TestTodoModelCreation::test_todo_model_creation PASSED [ 82%]
+tests/test_models.py::TestTodoModelCreation::test_todo_defaults PASSED   [ 83%]
+tests/test_models.py::TestTodoModelCreation::test_todo_constitutional_check_default PASSED [ 85%]
+tests/test_models.py::TestTodoModelCreation::test_todo_timestamps PASSED [ 86%]
+tests/test_models.py::TestTodoModelCreation::test_todo_with_deadline PASSED [ 88%]
+tests/test_models.py::TestTodoModelCreation::test_todo_with_ai_metadata PASSED [ 89%]
+tests/test_models.py::TestTodoToDict::test_to_dict_basic PASSED          [ 91%]
+tests/test_models.py::TestTodoToDict::test_to_dict_with_deadline PASSED  [ 92%]
+tests/test_models.py::TestTodoRepr::test_repr_short_title PASSED         [ 94%]
+tests/test_models.py::TestTodoRepr::test_repr_long_title PASSED          [ 95%]
+tests/test_models.py::TestTodoQueries::test_query_by_category PASSED     [ 97%]
+tests/test_models.py::TestTodoQueries::test_query_by_status PASSED       [ 98%]
+tests/test_models.py::TestTodoQueries::test_query_by_priority PASSED     [100%]
+
+=============================== warnings summary ===============================
+backend/models/todo.py:10
+  /mnt/d/Personal-AI-Employee/hackathons/h2-todo-spec-driven/tests/../backend/models/todo.py:10: MovedIn20Warning: The ``declarative_base()`` function is now available as sqlalchemy.orm.declarative_base(). (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    Base = declarative_base()
+
+../../../../../home/asadullahshafique/.local/lib/python3.12/site-packages/pydantic/_internal/_config.py:268
+  /home/asadullahshafique/.local/lib/python3.12/site-packages/pydantic/_internal/_config.py:268: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.5/migration/
+    warnings.warn(DEPRECATION_MESSAGE, DeprecationWarning)
+
+hackathons/h2-todo-spec-driven/tests/test_crud_operations.py: 46 warnings
+hackathons/h2-todo-spec-driven/tests/test_models.py: 32 warnings
+  /home/asadullahshafique/.local/lib/python3.12/site-packages/sqlalchemy/sql/schema.py:3624: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+hackathons/h2-todo-spec-driven/tests/test_crud_operations.py: 23 warnings
+  /mnt/d/Personal-AI-Employee/hackathons/h2-todo-spec-driven/tests/../backend/services/constitutional_validator.py:208: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    "timestamp": datetime.utcnow().isoformat(),
+
+hackathons/h2-todo-spec-driven/tests/test_crud_operations.py: 23 warnings
+  /mnt/d/Personal-AI-Employee/hackathons/h2-todo-spec-driven/tests/../backend/services/constitutional_validator.py:216: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    log_file = os.path.join(log_dir, f"constitutional_log_{datetime.utcnow().strftime('%Y%m%d')}.jsonl")
+
+hackathons/h2-todo-spec-driven/tests/test_crud_operations.py::TestCreateTodo::test_create_todo_flagged
+  /mnt/d/Personal-AI-Employee/hackathons/h2-todo-spec-driven/tests/../backend/services/constitutional_validator.py:265: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    {datetime.utcnow().isoformat()}
+
+hackathons/h2-todo-spec-driven/tests/test_crud_operations.py::TestListTodos::test_filter_by_status
+hackathons/h2-todo-spec-driven/tests/test_crud_operations.py::TestUpdateTodo::test_update_todo
+hackathons/h2-todo-spec-driven/tests/test_crud_operations.py::TestUpdateTodo::test_update_todo_status
+hackathons/h2-todo-spec-driven/tests/test_crud_operations.py::TestStats::test_stats_with_data
+  /mnt/d/Personal-AI-Employee/hackathons/h2-todo-spec-driven/tests/../backend/routers/todos.py:219: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    todo.updated_at = datetime.utcnow()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 67 passed, 131 warnings in 2.45s =======================

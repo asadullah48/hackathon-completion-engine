@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-app-backend
+  namespace: todo-app
+spec:
+  template:
+    spec:
+      containers:
+      - name: backend
+        # Increase timeouts and adjust thresholds for more resilience
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 45  # Increased from 30
+          periodSeconds: 15        # Increased from 10
+          timeoutSeconds: 10       # Increased from 5
+          failureThreshold: 5      # Increased from 3
+          successThreshold: 1
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 20  # Increased from 10
+          periodSeconds: 10        # Increased from 5
+          timeoutSeconds: 5        # Increased from 3
+          failureThreshold: 5      # Increased from 3
+          successThreshold: 1
+        # Slightly increase resource limits to handle load spikes
+        resources:
+          limits:
+            cpu: "1"           # Increased from 500m
+            memory: 1Gi        # Increased from 512Mi
+          requests:
+            cpu: 200m          # Increased from 100m
+            memory: 384Mi      # Increased from 256Mi
+---
+# Add a PodDisruptionBudget to ensure availability during maintenance
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: backend-pdb
+  namespace: todo-app
+spec:
+  minAvailable: 1  # Ensure at least 1 backend pod remains available
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: backend
+      app.kubernetes.io/instance: todo-app
+      app.kubernetes.io/name: todo-app

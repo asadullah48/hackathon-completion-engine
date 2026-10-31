@@ -1,0 +1,64 @@
+# Hackathon Completion Engine - Configuration
+# Version: 1.0.0
+
+engine:
+  name: "Hackathon Completion Engine"
+  version: "1.0.0"
+  author: "Asadullah"
+
+  # Token budget per hackathon
+  token_budget: 50000
+
+  # Debug mode
+  debug: false
+
+  # Logging level
+  log_level: "INFO"
+
+hackathons:
+  h0:
+    name: "Personal AI CTO"
+    type: "meta-system"
+    priority: 1
+    target_date: "2026-01-25"
+
+  h1:
+    name: "Course Companion FTE"
+    type: "application"
+    priority: 2
+    target_date: "2026-01-28"
+
+  h2:
+    name: "Todo Spec-Driven"
+    type: "methodology"
+    priority: 3
+    target_date: "2026-01-31"
+
+  h3:
+    name: "Advanced Todo"
+    type: "architecture"
+    priority: 4
+    target_date: "2026-02-04"
+
+  h4:
+    name: "Cloud Deployment"
+    type: "deployment"
+    priority: 5
+    target_date: "2026-02-08"
+
+deployment:
+  platforms:
+    - railway
+    - vercel
+    - render
+
+  default_platform: "railway"
+
+  health_check_timeout: 60
+  rollback_enabled: true
+
+paths:
+  specs: "specs"
+  hackathons: "hackathons"
+  skills_library: "skills-library"
+  templates: "engine/template-system/templates"

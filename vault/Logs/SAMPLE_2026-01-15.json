@@ -1,0 +1,17 @@
+{
+  "date": "2026-01-15",
+  "synthetic": true,
+  "activities": [
+    {
+      "timestamp": "2026-01-15T09:12:05",
+      "type": "email_triaged",
+      "details": {
+        "gmail_id": "SAMPLE-0001",
+        "from": "sales@supplier.example.com",
+        "subject": "Quote for 500 cotton T-shirts",
+        "priority": "high",
+        "action_item": "draft reply"
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+apiVersion: v2
+name: todo-app
+description: H4 Cloud-Native Todo Application with AI-powered task management
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - todo
+  - kubernetes
+  - fastapi
+  - nextjs
+maintainers:
+  - name: H4 Hackathon

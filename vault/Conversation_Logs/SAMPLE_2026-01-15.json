@@ -1,0 +1,13 @@
+[
+  {
+    "timestamp": "2026-01-15T09:00:00",
+    "student_id": "sample_student_001",
+    "conversation_id": null,
+    "query": "How does recursion work?",
+    "response": "What do you already know about functions calling themselves?",
+    "decision": "allow",
+    "metadata": {
+      "synthetic": true
+    }
+  }
+]
